@@ -27,7 +27,7 @@
 }
 
 .child {
-  height: 100vh;
+  height: 95vh;
   border-right: 1px solid var(--grey); /* Binnenste lijnen van de grid in grijs */
 
 }

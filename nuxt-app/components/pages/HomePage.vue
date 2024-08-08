@@ -1,6 +1,10 @@
-<script setup lang="ts">
-
-
+<script setup>
+const props = defineProps({
+  homepage: {
+    type: Object,
+    default: null
+  }
+});
 </script>
 
 <template>
@@ -11,10 +15,9 @@
       <div class="outline">
         <h1>Welcome to <span>my</span> journey</h1>
         <h2>Of mastering Javascript</h2>
-        <p>Als student Front-end Development leer ik JavaScript, een sleuteltool voor interactieve websites. Mijn
-          motivatie is om creatieve en gebruiksvriendelijke weboplossingen te ontwikkelen. Het beheersen van JavaScript
-          is essentieel voor mijn carrière, en ik kijk ernaar uit om mijn vaardigheden verder te verbeteren en toe te
-          passen in toekomstige projecten.</p>
+
+        <p v-if="props.homepage">{{ props.homepage.introHomePage }}</p>
+
         <AtomsExploreButton/>
         <p class="contact">Contact</p>
       </div>
@@ -23,7 +26,7 @@
 </template>
 
 <style scoped>
-
+/* Voeg hier je stijlen toe indien nodig */
 main {
   position: absolute;
   margin-left: 2rem;

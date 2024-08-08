@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@hygraph/management-sdk": "^1.2.5",
+    "nuxt-graphql-client": "^0.2.36"
+  }
+}

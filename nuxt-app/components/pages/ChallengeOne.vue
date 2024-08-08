@@ -9,14 +9,23 @@ function removeTransition(e) {
 
 // Function to play the sound and add the 'playing' class to the key
 function playSound(e) {
-  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-  const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+  let keyCode;
+
+  if (e.type === 'keydown') {
+    keyCode = e.keyCode;
+  } else if (e.type === 'touchstart') {
+    // On touch, find the key code from the touched element
+    keyCode = e.target.getAttribute('data-key');
+  }
+
+  const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+  const key = document.querySelector(`div[data-key="${keyCode}"]`);
   if (!audio) {
-    console.log(`No audio element found for key code: ${e.keyCode}`);
+    console.log(`No audio element found for key code: ${keyCode}`);
     return;
   }
   if (!key) {
-    console.log(`No key element found for key code: ${e.keyCode}`);
+    console.log(`No key element found for key code: ${keyCode}`);
     return;
   }
 
@@ -25,13 +34,16 @@ function playSound(e) {
   try {
     audio.play();
   } catch (err) {
-    console.error(`Failed to play audio for key code: ${e.keyCode}`, err);
+    console.error(`Failed to play audio for key code: ${keyCode}`, err);
   }
 }
 
 onMounted(() => {
   const keys = Array.from(document.querySelectorAll('.key'));
-  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  keys.forEach(key => {
+    key.addEventListener('transitionend', removeTransition);
+    key.addEventListener('touchstart', playSound); // Add touchstart event listener
+  });
   window.addEventListener('keydown', playSound);
 });
 </script>
@@ -96,11 +108,17 @@ onMounted(() => {
       <audio data-key="74" src="/sounds/snare.wav"></audio>
       <audio data-key="75" src="/sounds/tom.wav"></audio>
       <audio data-key="76" src="/sounds/tink.wav"></audio>
+
+      <div class="buttons">
+      <AtomsButtonPrevious/>
+      <AtomsButtonNext/>
+      </div>
     </main>
 
     <footer>
 
     </footer>
+
     </div>
 </template>
 
@@ -129,8 +147,9 @@ main {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  gap: 0.9rem;
   margin-top: 1rem;
+  margin-left: 0.5rem;
 }
 
 .key {
@@ -169,6 +188,12 @@ kbd {
   letter-spacing: .1rem;
   color: #ffc600;
 }
+
+.buttons {
+  margin-top: 1rem;
+}
+
+
 
 
 

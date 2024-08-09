@@ -9,8 +9,14 @@ function removeTransition(e) {
 
 // Function to play the sound and add the 'playing' class to the key
 function playSound(e) {
-  // Get the key code from the event or from the element's data attribute
+  // Determine the keyCode from keyboard event or data-key from touch event
   const keyCode = e.keyCode || e.target.dataset.key;
+
+  if (!keyCode) {
+    console.log("No key code found");
+    return;
+  }
+
   const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
   const key = document.querySelector(`div[data-key="${keyCode}"]`);
 
@@ -45,7 +51,6 @@ onMounted(() => {
 
   keys.forEach(key => {
     key.addEventListener('transitionend', removeTransition);
-    // Add event listener for touchstart
     key.addEventListener('touchstart', handleTouchStart);
   });
 

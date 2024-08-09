@@ -9,36 +9,23 @@ function removeTransition(e) {
 
 // Function to play the sound and add the 'playing' class to the key
 function playSound(e) {
-  // Determine keyCode based on event type
-  let keyCode;
-
-  if (e.type === 'keydown') {
-    keyCode = e.keyCode;
-  } else if (e.type === 'click') {
-    // Make sure the click event target is a `.key` element
-    if (!e.target.classList.contains('key')) return;
-    keyCode = e.target.dataset.key;
+  const audio = document.querySelector(`audio[data-key="${e.keyCode || e.target.dataset.key}"]`);
+  const key = document.querySelector(`div[data-key="${e.keyCode || e.target.dataset.key}"]`);
+  if (!audio) {
+    console.log(`No audio element found for key code: ${e.keyCode}`);
+    return;
   }
-
-  // Convert keyCode to string if it's a number
-  keyCode = String(keyCode);
-
-  const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
-  const key = document.querySelector(`div[data-key="${keyCode}"]`);
-
-  // Check if both elements exist
-  if (!audio || !key) {
-    console.log(`No audio or key element found for key code: ${keyCode}`);
+  if (!key) {
+    console.log(`No key element found for key code: ${e.keyCode}`);
     return;
   }
 
-  // Add 'playing' class and play the audio
   key.classList.add('playing');
   audio.currentTime = 0;
   try {
     audio.play();
   } catch (err) {
-    console.error(`Failed to play audio for key code: ${keyCode}`, err);
+    console.error(`Failed to play audio for key code: ${e.keyCode}`, err);
   }
 }
 
@@ -46,12 +33,11 @@ onMounted(() => {
   const keys = Array.from(document.querySelectorAll('.key'));
   keys.forEach(key => {
     key.addEventListener('transitionend', removeTransition);
-    key.addEventListener('click', playSound); // Add click event listener
+    key.addEventListener('touchstart', playSound); // Add click event listener
   });
   window.addEventListener('keydown', playSound);
 });
 </script>
-
 
 
 <template>
@@ -116,7 +102,7 @@ onMounted(() => {
   gap: 0.9rem;
   margin-top: 1rem;
   margin-left: 0.5rem;
-  
+  cursor: pointer;
 }
 
 .key {
@@ -131,6 +117,7 @@ onMounted(() => {
   color: white;
   background: rgba(0,0,0,0.4);
   text-shadow: 0 0 .5rem black;
+
 }
 
 /* Optioneel: forceer een nieuwe rij na elke drie items */
@@ -147,7 +134,6 @@ onMounted(() => {
 kbd {
   display: block;
   font-size: 2rem;
-  
 }
 
 .sound {

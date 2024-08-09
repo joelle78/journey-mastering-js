@@ -9,13 +9,15 @@ function removeTransition(e) {
 
 // Function to play the sound and add the 'playing' class to the key
 function playSound(e) {
-  // Determine the keyCode from keyboard event or data-key from touch event
+  // Determine keyCode from keyboard event or data-key from touch event
   const keyCode = e.keyCode || e.target.dataset.key;
 
   if (!keyCode) {
     console.log("No key code found");
     return;
   }
+
+  console.log(`Playing sound for keyCode: ${keyCode}`); // Debugging
 
   const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
   const key = document.querySelector(`div[data-key="${keyCode}"]`);
@@ -40,9 +42,14 @@ function playSound(e) {
 
 // Function to handle touch events
 function handleTouchStart(e) {
-  // Prevent default behavior of touch events
-  e.preventDefault();
-  // Pass the event to playSound with the key from the touched element
+  e.preventDefault(); // Prevent default touch behavior
+  console.log("Touch event detected"); // Debugging
+  playSound(e);
+}
+
+// Function to handle keydown events
+function handleKeyDown(e) {
+  console.log("Keydown event detected"); // Debugging
   playSound(e);
 }
 
@@ -54,61 +61,61 @@ onMounted(() => {
     key.addEventListener('touchstart', handleTouchStart);
   });
 
-  window.addEventListener('keydown', playSound);
+  window.addEventListener('keydown', handleKeyDown);
 });
 </script>
 
 <template>
-<div>
-  <div class="keys">
-    <div data-key="65" class="key">
-      <kbd>A</kbd>
-      <span class="sound">clap</span>
+  <div>
+    <div class="keys">
+      <div data-key="65" class="key">
+        <kbd>A</kbd>
+        <span class="sound">clap</span>
+      </div>
+      <div data-key="83" class="key">
+        <kbd>S</kbd>
+        <span class="sound">hihat</span>
+      </div>
+      <div data-key="68" class="key">
+        <kbd>D</kbd>
+        <span class="sound">kick</span>
+      </div>
+      <div data-key="70" class="key">
+        <kbd>F</kbd>
+        <span class="sound">openhat</span>
+      </div>
+      <div data-key="71" class="key">
+        <kbd>G</kbd>
+        <span class="sound">boom</span>
+      </div>
+      <div data-key="72" class="key">
+        <kbd>H</kbd>
+        <span class="sound">ride</span>
+      </div>
+      <div data-key="74" class="key">
+        <kbd>J</kbd>
+        <span class="sound">snare</span>
+      </div>
+      <div data-key="75" class="key">
+        <kbd>K</kbd>
+        <span class="sound">tom</span>
+      </div>
+      <div data-key="76" class="key">
+        <kbd>L</kbd>
+        <span class="sound">tink</span>
+      </div>
     </div>
-    <div data-key="83" class="key">
-      <kbd>S</kbd>
-      <span class="sound">hihat</span>
-    </div>
-    <div data-key="68" class="key">
-      <kbd>D</kbd>
-      <span class="sound">kick</span>
-    </div>
-    <div data-key="70" class="key">
-      <kbd>F</kbd>
-      <span class="sound">openhat</span>
-    </div>
-    <div data-key="71" class="key">
-      <kbd>G</kbd>
-      <span class="sound">boom</span>
-    </div>
-    <div data-key="72" class="key">
-      <kbd>H</kbd>
-      <span class="sound">ride</span>
-    </div>
-    <div data-key="74" class="key">
-      <kbd>J</kbd>
-      <span class="sound">snare</span>
-    </div>
-    <div data-key="75" class="key">
-      <kbd>K</kbd>
-      <span class="sound">tom</span>
-    </div>
-    <div data-key="76" class="key">
-      <kbd>L</kbd>
-      <span class="sound">tink</span>
-    </div>
-  </div>
 
-  <audio data-key="65" src="/sounds/clap.wav"></audio>
-  <audio data-key="83" src="/sounds/hihat.wav"></audio>
-  <audio data-key="68" src="/sounds/kick.wav"></audio>
-  <audio data-key="70" src="/sounds/openhat.wav"></audio>
-  <audio data-key="71" src="/sounds/boom.wav"></audio>
-  <audio data-key="72" src="/sounds/ride.wav"></audio>
-  <audio data-key="74" src="/sounds/snare.wav"></audio>
-  <audio data-key="75" src="/sounds/tom.wav"></audio>
-  <audio data-key="76" src="/sounds/tink.wav"></audio>
-</div>
+    <audio data-key="65" src="/sounds/clap.wav"></audio>
+    <audio data-key="83" src="/sounds/hihat.wav"></audio>
+    <audio data-key="68" src="/sounds/kick.wav"></audio>
+    <audio data-key="70" src="/sounds/openhat.wav"></audio>
+    <audio data-key="71" src="/sounds/boom.wav"></audio>
+    <audio data-key="72" src="/sounds/ride.wav"></audio>
+    <audio data-key="74" src="/sounds/snare.wav"></audio>
+    <audio data-key="75" src="/sounds/tom.wav"></audio>
+    <audio data-key="76" src="/sounds/tink.wav"></audio>
+  </div>
 </template>
 
 <style scoped>
@@ -132,7 +139,7 @@ onMounted(() => {
   width: 1rem;
   text-align: center;
   color: white;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   text-shadow: 0 0 .5rem black;
 }
 

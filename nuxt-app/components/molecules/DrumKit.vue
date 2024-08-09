@@ -1,26 +1,28 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 
-// Function to remove the 'playing' class after transition ends
+// Definieer referenties voor knoppen en audio-elementen
+const keys = ref([]);
+const audios = ref([]);
+
+// Functie om de 'playing' klasse te verwijderen na afloop van de overgang
 function removeTransition(e) {
   if (e.propertyName !== 'transform') return;
   e.target.classList.remove('playing');
 }
 
-// Function to play the sound and add the 'playing' class to the key
+// Functie om het geluid af te spelen en de 'playing' klasse toe te voegen aan de toets
 function playSound(e) {
-  // Determine keyCode from keyboard event or data-key from touch event
-  const keyCode = e.keyCode || e.target.dataset.key;
+  let keyCode;
 
-  if (!keyCode) {
-    console.log("No key code found");
-    return;
+  if (e.type === 'keydown') {
+    keyCode = e.keyCode;
+  } else if (e.type === 'click') {
+    keyCode = parseInt(e.currentTarget.getAttribute('data-key'), 10);
   }
 
-  console.log(`Playing sound for keyCode: ${keyCode}`); // Debugging
-
-  const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
-  const key = document.querySelector(`div[data-key="${keyCode}"]`);
+  const audio = audios.value.find(a => a.dataset.key == keyCode);
+  const key = keys.value.find(k => k.dataset.key == keyCode);
 
   if (!audio) {
     console.log(`No audio element found for key code: ${keyCode}`);
@@ -40,67 +42,56 @@ function playSound(e) {
   }
 }
 
-// Function to handle touch events
-function handleTouchStart(e) {
-  e.preventDefault(); // Prevent default touch behavior
-  console.log("Touch event detected"); // Debugging
-  playSound(e);
-}
-
-// Function to handle keydown events
-function handleKeyDown(e) {
-  console.log("Keydown event detected"); // Debugging
-  playSound(e);
-}
-
 onMounted(() => {
-  const keys = Array.from(document.querySelectorAll('.key'));
+  keys.value = Array.from(document.querySelectorAll('.key'));
+  audios.value = Array.from(document.querySelectorAll('audio'));
 
-  keys.forEach(key => {
+  // Voeg event listeners toe voor knoppen en audio
+  keys.value.forEach(key => {
+    key.addEventListener('click', playSound);
     key.addEventListener('transitionend', removeTransition);
-    key.addEventListener('touchstart', handleTouchStart);
   });
 
-  window.addEventListener('keydown', handleKeyDown);
+  window.addEventListener('keydown', playSound);
 });
 </script>
 
 <template>
   <div>
     <div class="keys">
-      <div data-key="65" class="key">
+      <div data-key="65" class="key" ref="keys">
         <kbd>A</kbd>
         <span class="sound">clap</span>
       </div>
-      <div data-key="83" class="key">
+      <div data-key="83" class="key" ref="keys">
         <kbd>S</kbd>
         <span class="sound">hihat</span>
       </div>
-      <div data-key="68" class="key">
+      <div data-key="68" class="key" ref="keys">
         <kbd>D</kbd>
         <span class="sound">kick</span>
       </div>
-      <div data-key="70" class="key">
+      <div data-key="70" class="key" ref="keys">
         <kbd>F</kbd>
         <span class="sound">openhat</span>
       </div>
-      <div data-key="71" class="key">
+      <div data-key="71" class="key" ref="keys">
         <kbd>G</kbd>
         <span class="sound">boom</span>
       </div>
-      <div data-key="72" class="key">
+      <div data-key="72" class="key" ref="keys">
         <kbd>H</kbd>
         <span class="sound">ride</span>
       </div>
-      <div data-key="74" class="key">
+      <div data-key="74" class="key" ref="keys">
         <kbd>J</kbd>
         <span class="sound">snare</span>
       </div>
-      <div data-key="75" class="key">
+      <div data-key="75" class="key" ref="keys">
         <kbd>K</kbd>
         <span class="sound">tom</span>
       </div>
-      <div data-key="76" class="key">
+      <div data-key="76" class="key" ref="keys">
         <kbd>L</kbd>
         <span class="sound">tink</span>
       </div>
@@ -139,8 +130,9 @@ onMounted(() => {
   width: 1rem;
   text-align: center;
   color: white;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0,0,0,0.4);
   text-shadow: 0 0 .5rem black;
+  cursor: pointer; /* Zorg ervoor dat knoppen klikbaar zijn */
 }
 
 /* Optioneel: forceer een nieuwe rij na elke drie items */

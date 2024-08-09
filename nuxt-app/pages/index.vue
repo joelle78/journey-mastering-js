@@ -10,7 +10,7 @@ const { homepage, pending, error } = await useHomepage();
 
 <template>
   <div>
-    <PagesHomePage :homepage="homepage" />
+    <Pages-ComponentsHomePage :homepage="homepage" />
 <!--    <challenges/>-->
   </div>
 </template>

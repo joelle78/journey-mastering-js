@@ -1,15 +1,18 @@
-<script setup lang="ts">
+<script setup>
 
 </script>
 
 <template>
-  <div>
-    <button class="button-explore" role="button">Explore</button>
 
-  </div>
+  <a href="challenges">
+    <button class="button-explore" role="button">Explore</button>
+  </a>
+
 </template>
 
 <style scoped>
+
+
 .button-explore {
   font-family: "Jost", sans-serif;
   text-transform: uppercase;

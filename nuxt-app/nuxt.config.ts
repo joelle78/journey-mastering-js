@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['nuxt-graphql-client'],
   css: ['assets/main.css'],
+
   app: {
     head: {
       htmlAttrs: {
@@ -12,5 +13,5 @@ export default defineNuxtConfig({
     },
   },
 
+  compatibilityDate: '2024-08-09',
 });
-

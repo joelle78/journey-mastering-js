@@ -5,7 +5,7 @@
 
 <template>
 <div>
-  <PagesChallengeOne/>
+  <Pages-ComponentsChallengeOne/>
 
 </div>
 </template>

@@ -19,6 +19,7 @@ const props = defineProps({
         <p v-if="props.homepage">{{ props.homepage.introHomePage }}</p>
 
         <AtomsExploreButton/>
+
         <p class="contact">Contact</p>
       </div>
     </main>
@@ -35,8 +36,7 @@ main {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  z-index: 1;
-  pointer-events: none;
+  z-index: 9999;
 }
 
 h2 {

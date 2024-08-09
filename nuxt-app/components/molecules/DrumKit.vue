@@ -1,38 +1,38 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 
-// Definieer referenties voor knoppen en audio-elementen
-const keys = ref([]);
-const audios = ref([]);
-
-// Functie om de 'playing' klasse te verwijderen na afloop van de overgang
+// Function to remove the 'playing' class after transition ends
 function removeTransition(e) {
   if (e.propertyName !== 'transform') return;
   e.target.classList.remove('playing');
 }
 
-// Functie om het geluid af te spelen en de 'playing' klasse toe te voegen aan de toets
+// Function to play the sound and add the 'playing' class to the key
 function playSound(e) {
+  // Determine keyCode based on event type
   let keyCode;
 
   if (e.type === 'keydown') {
     keyCode = e.keyCode;
   } else if (e.type === 'click') {
-    keyCode = parseInt(e.currentTarget.getAttribute('data-key'), 10);
+    // Make sure the click event target is a `.key` element
+    if (!e.target.classList.contains('key')) return;
+    keyCode = e.target.dataset.key;
   }
 
-  const audio = audios.value.find(a => a.dataset.key == keyCode);
-  const key = keys.value.find(k => k.dataset.key == keyCode);
+  // Convert keyCode to string if it's a number
+  keyCode = String(keyCode);
 
-  if (!audio) {
-    console.log(`No audio element found for key code: ${keyCode}`);
+  const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+  const key = document.querySelector(`div[data-key="${keyCode}"]`);
+
+  // Check if both elements exist
+  if (!audio || !key) {
+    console.log(`No audio or key element found for key code: ${keyCode}`);
     return;
   }
-  if (!key) {
-    console.log(`No key element found for key code: ${keyCode}`);
-    return;
-  }
 
+  // Add 'playing' class and play the audio
   key.classList.add('playing');
   audio.currentTime = 0;
   try {
@@ -43,70 +43,68 @@ function playSound(e) {
 }
 
 onMounted(() => {
-  keys.value = Array.from(document.querySelectorAll('.key'));
-  audios.value = Array.from(document.querySelectorAll('audio'));
-
-  // Voeg event listeners toe voor knoppen en audio
-  keys.value.forEach(key => {
-    key.addEventListener('click', playSound);
+  const keys = Array.from(document.querySelectorAll('.key'));
+  keys.forEach(key => {
     key.addEventListener('transitionend', removeTransition);
+    key.addEventListener('click', playSound); // Add click event listener
   });
-
   window.addEventListener('keydown', playSound);
 });
 </script>
 
-<template>
-  <div>
-    <div class="keys">
-      <div data-key="65" class="key" ref="keys">
-        <kbd>A</kbd>
-        <span class="sound">clap</span>
-      </div>
-      <div data-key="83" class="key" ref="keys">
-        <kbd>S</kbd>
-        <span class="sound">hihat</span>
-      </div>
-      <div data-key="68" class="key" ref="keys">
-        <kbd>D</kbd>
-        <span class="sound">kick</span>
-      </div>
-      <div data-key="70" class="key" ref="keys">
-        <kbd>F</kbd>
-        <span class="sound">openhat</span>
-      </div>
-      <div data-key="71" class="key" ref="keys">
-        <kbd>G</kbd>
-        <span class="sound">boom</span>
-      </div>
-      <div data-key="72" class="key" ref="keys">
-        <kbd>H</kbd>
-        <span class="sound">ride</span>
-      </div>
-      <div data-key="74" class="key" ref="keys">
-        <kbd>J</kbd>
-        <span class="sound">snare</span>
-      </div>
-      <div data-key="75" class="key" ref="keys">
-        <kbd>K</kbd>
-        <span class="sound">tom</span>
-      </div>
-      <div data-key="76" class="key" ref="keys">
-        <kbd>L</kbd>
-        <span class="sound">tink</span>
-      </div>
-    </div>
 
-    <audio data-key="65" src="/sounds/clap.wav"></audio>
-    <audio data-key="83" src="/sounds/hihat.wav"></audio>
-    <audio data-key="68" src="/sounds/kick.wav"></audio>
-    <audio data-key="70" src="/sounds/openhat.wav"></audio>
-    <audio data-key="71" src="/sounds/boom.wav"></audio>
-    <audio data-key="72" src="/sounds/ride.wav"></audio>
-    <audio data-key="74" src="/sounds/snare.wav"></audio>
-    <audio data-key="75" src="/sounds/tom.wav"></audio>
-    <audio data-key="76" src="/sounds/tink.wav"></audio>
+
+<template>
+<div>
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">hihat</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">kick</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">openhat</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">boom</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">ride</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">snare</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">tom</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">tink</span>
+    </div>
   </div>
+
+  <audio data-key="65" src="/sounds/clap.wav"></audio>
+  <audio data-key="83" src="/sounds/hihat.wav"></audio>
+  <audio data-key="68" src="/sounds/kick.wav"></audio>
+  <audio data-key="70" src="/sounds/openhat.wav"></audio>
+  <audio data-key="71" src="/sounds/boom.wav"></audio>
+  <audio data-key="72" src="/sounds/ride.wav"></audio>
+  <audio data-key="74" src="/sounds/snare.wav"></audio>
+  <audio data-key="75" src="/sounds/tom.wav"></audio>
+  <audio data-key="76" src="/sounds/tink.wav"></audio>
+</div>
 </template>
 
 <style scoped>
@@ -118,6 +116,7 @@ onMounted(() => {
   gap: 0.9rem;
   margin-top: 1rem;
   margin-left: 0.5rem;
+  
 }
 
 .key {
@@ -132,7 +131,6 @@ onMounted(() => {
   color: white;
   background: rgba(0,0,0,0.4);
   text-shadow: 0 0 .5rem black;
-  cursor: pointer; /* Zorg ervoor dat knoppen klikbaar zijn */
 }
 
 /* Optioneel: forceer een nieuwe rij na elke drie items */
@@ -149,6 +147,7 @@ onMounted(() => {
 kbd {
   display: block;
   font-size: 2rem;
+  
 }
 
 .sound {

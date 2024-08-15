@@ -1,15 +1,16 @@
-<script setup lang="ts">
-
+<script>
 
 </script>
 
 <template>
-<div>
-  <Pages-ComponentsChallengeOne/>
+  <div>
 
-</div>
+    <Pages-ComponentsChallengeOne/>
+    <Pages-ComponentsChallengeTwo/>
+
+  </div>
 </template>
 
-<style scoped>
+<style>
 
 </style>

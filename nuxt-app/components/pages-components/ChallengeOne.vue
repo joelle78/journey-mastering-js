@@ -23,7 +23,7 @@ onMounted(() => {
     <main>
       <div class="flex-container-header">
         <h3>Challenge one <span>drumkit</span></h3>
-        <a href="#popup">
+        <a class="code-button" href="#popup">
           <AtomsCodeButton/>
         </a>
 
@@ -68,6 +68,10 @@ main {
   flex-direction: row;
 }
 
+.code-button {
+  margin-right: 2rem;
+}
+
 /* Basisstijl voor de popup */
 .popup {
   display: none; /* Verberg de popup standaard */
@@ -100,11 +104,13 @@ main {
 /* Sluitknop van de popup */
 .close-btn {
   position: absolute;
-  top: 10px;
+  top: -5px;
   right: 10px;
-  cursor: pointer;
-  font-size: 20px;
+  font-size: 30px;
+  text-decoration: none;
+  color: #000000;
 }
+
 
 li {
   font-size: 0.5rem;

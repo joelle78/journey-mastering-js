@@ -1,6 +1,19 @@
 <script setup>
+import { defineProps, onMounted } from 'vue';
+import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
 
+// Ontvang de props met markdown content
+const props = defineProps({
+  challenges: {
+    type: Array,
+    default: () => []
+  }
+});
 
+// Watch for changes and highlight code
+onMounted(() => {
+  highlightCode();
+});
 </script>
 
 <template>
@@ -11,11 +24,26 @@
 
     <main>
       <div class="flex-container-header">
-        <h3>Challenge one <span>drumkit</span></h3>
-        <AtomsCodeButton/>
+        <h3>Challenge two <span>current time</span></h3>
+        <a class="code-button" href="#popup2">
+          <AtomsCodeButton/>
+        </a>
+
+        <!-- De popup zelf -->
+        <div id="popup2" class="popup2">
+          <div class="popup-content">
+            <a href="#" class="close-btn">&times;</a>
+
+            <!-- Gebruik v-for om door de uitdagingen te lopen -->
+            <ul>
+              <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeTwo)" />
+            </ul>
+
+          </div>
+        </div>
       </div>
 
-
+      <MoleculesClock/>
     </main>
 
     <div class="buttons">
@@ -27,23 +55,74 @@
 </template>
 
 <style scoped>
+span {
+  display: block;
+}
 
 main {
   position: absolute;
   margin-left: 2rem;
-  top: 5rem;
+  top: 48rem;
   left: 0;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  z-index: 1;
-  pointer-events: none;
   flex-direction: column;
 }
 
 .flex-container-header {
   display: flex;
   flex-direction: row;
+}
+
+.code-button {
+  margin-left: 4rem;
+}
+
+
+/* Basisstijl voor de popup */
+.popup2 {
+  display: none; /* Verberg de popup standaard */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Wanneer de popup het doel is, toon het */
+#popup2:target {
+  display: flex;
+}
+
+/* Stijl voor de inhoud van de popup */
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  width: 80%;
+  max-width: 500px;
+}
+
+/* Sluitknop van de popup */
+.close-btn {
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  font-size: 30px;
+  text-decoration: none;
+  color: #000000;
+}
+
+
+li {
+  font-size: 0.5rem;
+  list-style: none;
 }
 
 .buttons {
@@ -54,5 +133,4 @@ main {
   justify-content: space-between;
   align-items: center;
 }
-
 </style>

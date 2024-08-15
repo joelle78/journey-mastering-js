@@ -19,6 +19,5 @@
 div {
   position: relative;
   top: 1.2rem;
-  right: 0.8rem;
 }
 </style>

@@ -36,7 +36,6 @@ main {
   justify-content: flex-start;
   align-items: flex-start;
   z-index: 1;
-  pointer-events: none;
   flex-direction: column;
 }
 

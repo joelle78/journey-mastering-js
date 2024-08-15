@@ -12,42 +12,34 @@ function playSound(keyCode) {
   const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
   const key = document.querySelector(`div[data-key="${keyCode}"]`);
 
-  if (!audio) {
-    console.log(`No audio element found for key code: ${keyCode}`);
-    return;
-  }
-  if (!key) {
-    console.log(`No key element found for key code: ${keyCode}`);
-    return;
-  }
+  if (!audio || !key) return;
 
   key.classList.add('playing');
   audio.currentTime = 0;
-  try {
-    audio.play();
-  } catch (err) {
-    console.error(`Failed to play audio for key code: ${keyCode}`, err);
-  }
+  audio.play();
 }
 
-// Handle both keydown and click events
-function handleEvent(e) {
-  const keyCode = e.type === 'keydown' ? e.keyCode : e.target.closest('.key')?.dataset.key;
-  if (keyCode) {
-    playSound(keyCode);
-  }
+// Handle keydown event
+function handleKeydown(e) {
+  const keyCode = e.keyCode;
+  playSound(keyCode);
+}
+
+// Handle click event
+function handleClick(e) {
+  const keyCode = e.currentTarget.dataset.key;
+  playSound(keyCode);
 }
 
 onMounted(() => {
-  const keysContainer = document.querySelector('.keys');
-  keysContainer.addEventListener('click', handleEvent); // Event delegation for click
+  const keys = document.querySelectorAll('.key');
 
-  window.addEventListener('keydown', handleEvent);
-
-  const keys = Array.from(document.querySelectorAll('.key'));
   keys.forEach(key => {
     key.addEventListener('transitionend', removeTransition);
+    key.addEventListener('click', handleClick);  // Click event listener
   });
+
+  window.addEventListener('keydown', handleKeydown);  // Keydown event listener
 });
 </script>
 
@@ -105,7 +97,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* CSS stays the same */
 .keys {
   display: flex;
   flex-wrap: wrap;

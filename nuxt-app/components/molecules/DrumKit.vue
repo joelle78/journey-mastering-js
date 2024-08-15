@@ -105,7 +105,6 @@ onMounted(() => {
   gap: 0.9rem;
   margin-top: 1rem;
   margin-left: 0.5rem;
-  cursor: pointer;
 }
 
 .key {

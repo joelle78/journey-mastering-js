@@ -1,19 +1,46 @@
 <script setup>
+import { defineProps, onMounted } from 'vue';
+import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
 
+// Ontvang de props met markdown content
+const props = defineProps({
+  challenges: {
+    type: Array,
+    default: () => []
+  }
+});
 
+// Watch for changes and highlight code
+onMounted(() => {
+  highlightCode();
+});
 </script>
 
 <template>
-
-
   <div class="container">
     <TemplatesGridBackground/>
 
     <main>
       <div class="flex-container-header">
         <h3>Challenge one <span>drumkit</span></h3>
-        <AtomsCodeButton/>
+        <a href="#popup">
+          <AtomsCodeButton/>
+        </a>
+
+        <!-- De popup zelf -->
+        <div id="popup" class="popup">
+          <div class="popup-content">
+            <a href="#" class="close-btn">&times;</a>
+
+            <!-- Gebruik v-for om door de uitdagingen te lopen -->
+            <ul>
+              <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeOne)" />
+            </ul>
+
+          </div>
+        </div>
       </div>
+
       <MoleculesDrumKit/>
     </main>
 
@@ -21,12 +48,10 @@
       <AtomsButtonPrevious/>
       <AtomsButtonNext/>
     </div>
-
-    </div>
+  </div>
 </template>
 
 <style scoped>
-
 main {
   position: absolute;
   margin-left: 2rem;
@@ -35,13 +60,55 @@ main {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  z-index: 1;
   flex-direction: column;
 }
 
 .flex-container-header {
   display: flex;
   flex-direction: row;
+}
+
+/* Basisstijl voor de popup */
+.popup {
+  display: none; /* Verberg de popup standaard */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Wanneer de popup het doel is, toon het */
+#popup:target {
+  display: flex;
+}
+
+/* Stijl voor de inhoud van de popup */
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  width: 80%;
+  max-width: 500px;
+}
+
+/* Sluitknop van de popup */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+li {
+  font-size: 0.5rem;
+  list-style: none;
 }
 
 .buttons {
@@ -52,5 +119,4 @@ main {
   justify-content: space-between;
   align-items: center;
 }
-
 </style>

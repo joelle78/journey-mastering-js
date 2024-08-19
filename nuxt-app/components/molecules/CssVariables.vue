@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 
 function handleUpdate(event) {
   const input = event.target;
@@ -7,12 +7,21 @@ function handleUpdate(event) {
   document.documentElement.style.setProperty(`--${input.name}`, input.value + suffix);
 }
 
+let controlsContainer = null;
+
 onMounted(() => {
-  const inputs = document.querySelectorAll('.controls input');
-  inputs.forEach(input => {
-    input.addEventListener('change', handleUpdate);
-    input.addEventListener('mousemove', handleUpdate);
-  });
+  controlsContainer = document.querySelector('.controls');
+  if (controlsContainer) {
+    controlsContainer.addEventListener('change', handleUpdate);
+    controlsContainer.addEventListener('mousemove', handleUpdate);
+  }
+});
+
+onUnmounted(() => {
+  if (controlsContainer) {
+    controlsContainer.removeEventListener('change', handleUpdate);
+    controlsContainer.removeEventListener('mousemove', handleUpdate);
+  }
 });
 </script>
 
@@ -52,4 +61,3 @@ img {
   color: var(--base);
 }
 </style>
-

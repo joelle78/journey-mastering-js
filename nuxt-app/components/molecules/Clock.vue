@@ -32,6 +32,10 @@ onMounted(() => {
   setDate();  // Zorg ervoor dat de klok niet wacht tot 1 seconde voor de eerste update
   setInterval(setDate, 1000);
 });
+
+onUnmounted(() => {
+  if (intervalId) clearInterval(intervalId);  // Zorg ervoor dat het interval wordt opgeruimd
+});
 </script>
 
 <template>

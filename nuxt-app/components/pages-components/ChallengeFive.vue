@@ -1,7 +1,8 @@
 <script setup>
 import { defineProps, onMounted } from 'vue';
 import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
-import CssVariables from "~/components/molecules/CssVariables.vue";
+import ColorCanvas from "~/components/molecules/ColorCanvas.vue";
+
 
 // Ontvang de props met markdown content
 const props = defineProps({
@@ -20,22 +21,22 @@ onMounted(() => {
 <template>
 
 
-  <div id="challenge-three" class="container">
+  <div id="challenge-four" class="container">
     <TemplatesGridBackground/>
 
     <main>
       <div class="flex-container-header">
-        <h3>Challenge three <span>CSS variables</span></h3>
-        <a class="code-button" href="#popup3">
+        <h3>Challenge four <span>Color canvas</span></h3>
+        <a class="code-button" href="#popup4">
           <AtomsCodeButton/>
         </a>
 
         <!-- De popup zelf -->
-        <div id="popup3" class="popup3">
+        <div id="popup4" class="popup4">
           <div class="popup-content">
             <a href="#" class="close-btn">&times;</a>
 
-            <!-- Gebruik v-for om door de uitdagingen te lopen -->
+            <!-- Gebruik v-for om door de uitdagingen te loopen -->
             <ul>
               <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeThree)" />
             </ul>
@@ -45,12 +46,12 @@ onMounted(() => {
 
       </div>
 
-      <CssVariables/>
+
     </main>
 
     <div class="buttons">
-      <a href="#challenge-two"><AtomsButtonPrevious/></a>
-      <a href="#challenge-four"><AtomsButtonNext/></a>
+      <a href="#challenge-three"><AtomsButtonPrevious/></a>
+      <AtomsButtonNext/>
     </div>
 
   </div>
@@ -64,7 +65,7 @@ span {
 main {
   position: absolute;
   margin-left: 2rem;
-  top: 220vh;
+  top: 325vh;
   left: 0;
   display: flex;
   justify-content: flex-start;
@@ -83,7 +84,7 @@ main {
 
 
 /* Basisstijl voor de popup */
-.popup3 {
+.popup4 {
   display: none; /* Verberg de popup standaard */
   position: fixed;
   left: 0;
@@ -97,7 +98,7 @@ main {
 }
 
 /* Wanneer de popup het doel is, toon het */
-#popup3:target {
+#popup4:target {
   display: flex;
 }
 

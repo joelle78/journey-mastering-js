@@ -1,13 +1,11 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 
-// Function to remove the 'playing' class after transition ends
 function removeTransition(e) {
   if (e.propertyName !== 'transform') return;
   e.target.classList.remove('playing');
 }
 
-// Function to play the sound and add the 'playing' class to the key
 function playSound(keyCode) {
   const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
   const key = document.querySelector(`div[data-key="${keyCode}"]`);
@@ -19,27 +17,32 @@ function playSound(keyCode) {
   audio.play();
 }
 
-// Handle keydown event
 function handleKeydown(e) {
   const keyCode = e.keyCode;
   playSound(keyCode);
 }
 
-// Handle click event
 function handleClick(e) {
-  const keyCode = e.currentTarget.dataset.key;
-  playSound(keyCode);
+  const keyCode = e.target.closest('.key')?.dataset.key;
+  if (keyCode) playSound(keyCode);
 }
 
 onMounted(() => {
-  const keys = document.querySelectorAll('.key');
+  const keysContainer = document.querySelector('.keys');
 
-  keys.forEach(key => {
-    key.addEventListener('transitionend', removeTransition);
-    key.addEventListener('click', handleClick);  // Click event listener
-  });
+  keysContainer.addEventListener('transitionend', removeTransition);
+  keysContainer.addEventListener('click', handleClick);
 
-  window.addEventListener('keydown', handleKeydown);  // Keydown event listener
+  window.addEventListener('keydown', handleKeydown);
+});
+
+onUnmounted(() => {
+  const keysContainer = document.querySelector('.keys');
+
+  keysContainer.removeEventListener('transitionend', removeTransition);
+  keysContainer.removeEventListener('click', handleClick);
+
+  window.removeEventListener('keydown', handleKeydown);
 });
 </script>
 
@@ -108,7 +111,7 @@ onMounted(() => {
 }
 
 .key {
-  flex: 1 1 calc(33.3333% - 10px); /* Zorgt ervoor dat er drie items per rij passen */
+  flex: 1 1 calc(33.3333% - 10px);
   border: .1rem solid black;
   border-radius: .5rem;
   font-size: 0.5rem;
@@ -117,7 +120,7 @@ onMounted(() => {
   width: 1rem;
   text-align: center;
   color: white;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   text-shadow: 0 0 .5rem black;
 }
 

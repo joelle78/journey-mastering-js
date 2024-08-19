@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps, onMounted } from 'vue';
 import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
+import CssVariables from "~/components/molecules/CssVariables.vue";
 
 // Ontvang de props met markdown content
 const props = defineProps({
@@ -19,12 +20,12 @@ onMounted(() => {
 <template>
 
 
-  <div id="challenge-two" class="container">
+  <div id="challenge-three" class="container">
     <TemplatesGridBackground/>
 
     <main>
       <div class="flex-container-header">
-        <h3>Challenge two <span>current time</span></h3>
+        <h3>Challenge three <span>CSS variables</span></h3>
         <a class="code-button" href="#popup2">
           <AtomsCodeButton/>
         </a>
@@ -38,17 +39,18 @@ onMounted(() => {
             <ul>
               <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeTwo)" />
             </ul>
-
           </div>
         </div>
+
+
       </div>
 
-      <MoleculesClock/>
+      <CssVariables/>
     </main>
 
     <div class="buttons">
-      <a href="#challenge-one"><AtomsButtonPrevious/></a>
-      <a href="#challenge-three"><AtomsButtonNext/></a>
+      <a href="#challenge-two"><AtomsButtonPrevious/></a>
+      <AtomsButtonNext/>
     </div>
 
   </div>
@@ -62,7 +64,7 @@ span {
 main {
   position: absolute;
   margin-left: 2rem;
-  top: 115vh;
+  top: 220vh;
   left: 0;
   display: flex;
   justify-content: flex-start;

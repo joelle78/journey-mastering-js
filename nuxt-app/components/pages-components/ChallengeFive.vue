@@ -21,18 +21,18 @@ onMounted(() => {
 <template>
 
 
-  <div id="challenge-four" class="container">
+  <div id="challenge-five" class="container">
     <TemplatesGridBackground/>
 
     <main>
       <div class="flex-container-header">
-        <h3>Challenge four <span>Color canvas</span></h3>
+        <h3>Challenge five <span>Color canvas</span></h3>
         <a class="code-button" href="#popup4">
           <AtomsCodeButton/>
         </a>
 
         <!-- De popup zelf -->
-        <div id="popup4" class="popup4">
+        <div id="popup5" class="popup5">
           <div class="popup-content">
             <a href="#" class="close-btn">&times;</a>
 
@@ -65,7 +65,7 @@ span {
 main {
   position: absolute;
   margin-left: 2rem;
-  top: 325vh;
+  top: 425vh;
   left: 0;
   display: flex;
   justify-content: flex-start;
@@ -84,7 +84,7 @@ main {
 
 
 /* Basisstijl voor de popup */
-.popup4 {
+.popup5 {
   display: none; /* Verberg de popup standaard */
   position: fixed;
   left: 0;
@@ -98,7 +98,7 @@ main {
 }
 
 /* Wanneer de popup het doel is, toon het */
-#popup4:target {
+#popup5:target {
   display: flex;
 }
 

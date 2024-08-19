@@ -93,25 +93,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container-canvas">
+
     <canvas ref="canvas"></canvas>
-  </div>
+
 </template>
 
 <style scoped>
-html, body {
-  margin: 0;
-}
 
-.container-canvas {
-  background: black;
-  width: 90%;
-  height: 60vh;
-}
 
-canvas {
-  display: block;
-  width: 110%;
 
-}
 </style>

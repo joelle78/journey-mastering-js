@@ -13,12 +13,15 @@ let direction = true;
 function draw(e) {
   if (!isDrawing || !ctx) return;
 
+  // Get the position based on event type
+  const { offsetX, offsetY } = e.touches ? e.touches[0] : e;
+
   ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
   ctx.beginPath();
   ctx.moveTo(lastX, lastY);
-  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.lineTo(offsetX, offsetY);
   ctx.stroke();
-  [lastX, lastY] = [e.offsetX, e.offsetY];
+  [lastX, lastY] = [offsetX, offsetY];
 
   hue++;
   if (hue >= 360) hue = 0;
@@ -30,7 +33,8 @@ function draw(e) {
 function startDrawing(e) {
   if (ctx) {
     isDrawing = true;
-    [lastX, lastY] = [e.offsetX, e.offsetY];
+    const { offsetX, offsetY } = e.touches ? e.touches[0] : e;
+    [lastX, lastY] = [offsetX, offsetY];
   }
 }
 
@@ -45,28 +49,45 @@ function handleResize() {
   }
 }
 
+function addEventListeners() {
+  canvas.value.addEventListener('mousedown', startDrawing);
+  canvas.value.addEventListener('mousemove', draw);
+  canvas.value.addEventListener('mouseup', stopDrawing);
+  canvas.value.addEventListener('mouseout', stopDrawing);
+
+  canvas.value.addEventListener('touchstart', startDrawing);
+  canvas.value.addEventListener('touchmove', draw);
+  canvas.value.addEventListener('touchend', stopDrawing);
+  canvas.value.addEventListener('touchcancel', stopDrawing);
+
+  window.addEventListener('resize', handleResize); // Handle window resize
+}
+
+function removeEventListeners() {
+  canvas.value.removeEventListener('mousedown', startDrawing);
+  canvas.value.removeEventListener('mousemove', draw);
+  canvas.value.removeEventListener('mouseup', stopDrawing);
+  canvas.value.removeEventListener('mouseout', stopDrawing);
+
+  canvas.value.removeEventListener('touchstart', startDrawing);
+  canvas.value.removeEventListener('touchmove', draw);
+  canvas.value.removeEventListener('touchend', stopDrawing);
+  canvas.value.removeEventListener('touchcancel', stopDrawing);
+
+  window.removeEventListener('resize', handleResize); // Cleanup resize listener
+}
+
 onMounted(() => {
   if (canvas.value) {
     ctx = canvas.value.getContext('2d');
     handleResize(); // Initial resize to fit the window
-
-    canvas.value.addEventListener('mousedown', startDrawing);
-    canvas.value.addEventListener('mousemove', draw);
-    canvas.value.addEventListener('mouseup', stopDrawing);
-    canvas.value.addEventListener('mouseout', stopDrawing);
-
-    window.addEventListener('resize', handleResize); // Handle window resize
+    addEventListeners();
   }
 });
 
 onUnmounted(() => {
   if (canvas.value) {
-    canvas.value.removeEventListener('mousedown', startDrawing);
-    canvas.value.removeEventListener('mousemove', draw);
-    canvas.value.removeEventListener('mouseup', stopDrawing);
-    canvas.value.removeEventListener('mouseout', stopDrawing);
-
-    window.removeEventListener('resize', handleResize); // Cleanup resize listener
+    removeEventListeners();
   }
 });
 </script>
@@ -89,6 +110,7 @@ html, body {
 }
 
 canvas {
+  display: block;
   width: 110%;
 
 }

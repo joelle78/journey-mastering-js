@@ -26,18 +26,18 @@ onMounted(() => {
     <main>
       <div class="flex-container-header">
         <h3>Challenge three <span>CSS variables</span></h3>
-        <a class="code-button" href="#popup2">
+        <a class="code-button" href="#popup3">
           <AtomsCodeButton/>
         </a>
 
         <!-- De popup zelf -->
-        <div id="popup2" class="popup2">
+        <div id="popup3" class="popup3">
           <div class="popup-content">
             <a href="#" class="close-btn">&times;</a>
 
             <!-- Gebruik v-for om door de uitdagingen te lopen -->
             <ul>
-              <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeTwo)" />
+              <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeThree)" />
             </ul>
           </div>
         </div>
@@ -83,7 +83,7 @@ main {
 
 
 /* Basisstijl voor de popup */
-.popup2 {
+.popup3 {
   display: none; /* Verberg de popup standaard */
   position: fixed;
   left: 0;
@@ -97,7 +97,7 @@ main {
 }
 
 /* Wanneer de popup het doel is, toon het */
-#popup2:target {
+#popup3:target {
   display: flex;
 }
 

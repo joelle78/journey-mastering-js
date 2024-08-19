@@ -34,6 +34,13 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.controls {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
 img {
   width: 19rem;
   padding: var(--spacing);
@@ -45,3 +52,4 @@ img {
   color: var(--base);
 }
 </style>
+

@@ -12,6 +12,7 @@ export async function useChallenges() {
                    challenge {
                       challengeOne
                       challengeTwo
+                      challengeThree
                          }
                        }
                     `

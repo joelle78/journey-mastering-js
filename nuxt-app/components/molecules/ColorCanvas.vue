@@ -1,5 +1,5 @@
 <script setup>
-import {ref, onMounted, onUnmounted} from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const canvas = ref(null);
 
@@ -33,8 +33,8 @@ function draw(e) {
 }
 
 function startDrawing(e) {
+  e.preventDefault(); // Prevent default behavior (scrolling, etc.)
   if (ctx) {
-    e.preventDefault(); // Prevent default behavior (scrolling, etc.)
     isDrawing = true;
     const rect = canvas.value.getBoundingClientRect();
     const offsetX = e.clientX - rect.left;
@@ -63,12 +63,25 @@ function addEventListeners() {
 
   canvas.value.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    startDrawing(e);
+    // Use the first touch point
+    const touch = e.touches[0];
+    const rect = canvas.value.getBoundingClientRect();
+    const offsetX = touch.clientX - rect.left;
+    const offsetY = touch.clientY - rect.top;
+    [lastX, lastY] = [offsetX, offsetY];
+    isDrawing = true;
   });
+
   canvas.value.addEventListener('touchmove', (e) => {
     e.preventDefault();
-    draw(e);
+    // Use the first touch point
+    const touch = e.touches[0];
+    const rect = canvas.value.getBoundingClientRect();
+    const offsetX = touch.clientX - rect.left;
+    const offsetY = touch.clientY - rect.top;
+    draw({ clientX: offsetX + rect.left, clientY: offsetY + rect.top });
   });
+
   canvas.value.addEventListener('touchend', stopDrawing);
   canvas.value.addEventListener('touchcancel', stopDrawing);
 
@@ -83,12 +96,25 @@ function removeEventListeners() {
 
   canvas.value.removeEventListener('touchstart', (e) => {
     e.preventDefault();
-    startDrawing(e);
+    // Use the first touch point
+    const touch = e.touches[0];
+    const rect = canvas.value.getBoundingClientRect();
+    const offsetX = touch.clientX - rect.left;
+    const offsetY = touch.clientY - rect.top;
+    [lastX, lastY] = [offsetX, offsetY];
+    isDrawing = true;
   });
+
   canvas.value.removeEventListener('touchmove', (e) => {
     e.preventDefault();
-    draw(e);
+    // Use the first touch point
+    const touch = e.touches[0];
+    const rect = canvas.value.getBoundingClientRect();
+    const offsetX = touch.clientX - rect.left;
+    const offsetY = touch.clientY - rect.top;
+    draw({ clientX: offsetX + rect.left, clientY: offsetY + rect.top });
   });
+
   canvas.value.removeEventListener('touchend', stopDrawing);
   canvas.value.removeEventListener('touchcancel', stopDrawing);
 
@@ -119,7 +145,9 @@ onUnmounted(() => {
 <style scoped>
 canvas {
   display: block;
-  background: #fff; /* White background for the canvas */
- 
+  background: #fff;
+  touch-action: none; /* Prevent default touch actions */
+  width: 80vw;
+  height: 60vh;
 }
 </style>

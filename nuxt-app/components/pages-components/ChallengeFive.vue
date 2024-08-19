@@ -2,6 +2,7 @@
 import { defineProps, onMounted } from 'vue';
 import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
 import ColorCanvas from "~/components/molecules/ColorCanvas.vue";
+import MoveShadow from "~/components/molecules/MoveShadow.vue";
 
 
 // Ontvang de props met markdown content
@@ -26,7 +27,7 @@ onMounted(() => {
 
     <main>
       <div class="flex-container-header">
-        <h3>Challenge five <span>Color canvas</span></h3>
+        <h3>Challenge five <span>move shadow</span></h3>
         <a class="code-button" href="#popup4">
           <AtomsCodeButton/>
         </a>
@@ -42,15 +43,13 @@ onMounted(() => {
             </ul>
           </div>
         </div>
-
-
       </div>
-
+      <MoveShadow/>
 
     </main>
 
     <div class="buttons">
-      <a href="#challenge-three"><AtomsButtonPrevious/></a>
+      <a href="#challenge-four"><AtomsButtonPrevious/></a>
       <AtomsButtonNext/>
     </div>
 

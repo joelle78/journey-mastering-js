@@ -45,7 +45,7 @@ onMounted(() => {
     </main>
 
     <div class="buttons">
-      <AtomsButtonPrevious/>
+      <a href="/"><AtomsButtonPrevious/></a>
       <a href="#challenge-two"><AtomsButtonNext/></a>
     </div>
   </div>

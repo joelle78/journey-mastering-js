@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import {ref, onMounted, onUnmounted} from 'vue';
 
 const canvas = ref(null);
 
@@ -14,7 +14,9 @@ function draw(e) {
   if (!isDrawing || !ctx) return;
 
   // Get the position based on event type
-  const { offsetX, offsetY } = e.touches ? e.touches[0] : e;
+  const rect = canvas.value.getBoundingClientRect();
+  const offsetX = e.clientX - rect.left;
+  const offsetY = e.clientY - rect.top;
 
   ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
   ctx.beginPath();
@@ -32,13 +34,17 @@ function draw(e) {
 
 function startDrawing(e) {
   if (ctx) {
+    e.preventDefault(); // Prevent default behavior (scrolling, etc.)
     isDrawing = true;
-    const { offsetX, offsetY } = e.touches ? e.touches[0] : e;
+    const rect = canvas.value.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const offsetY = e.clientY - rect.top;
     [lastX, lastY] = [offsetX, offsetY];
   }
 }
 
-function stopDrawing() {
+function stopDrawing(e) {
+  e.preventDefault(); // Prevent default behavior (scrolling, etc.)
   isDrawing = false;
 }
 
@@ -55,8 +61,14 @@ function addEventListeners() {
   canvas.value.addEventListener('mouseup', stopDrawing);
   canvas.value.addEventListener('mouseout', stopDrawing);
 
-  canvas.value.addEventListener('touchstart', startDrawing);
-  canvas.value.addEventListener('touchmove', draw);
+  canvas.value.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    startDrawing(e);
+  });
+  canvas.value.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    draw(e);
+  });
   canvas.value.addEventListener('touchend', stopDrawing);
   canvas.value.addEventListener('touchcancel', stopDrawing);
 
@@ -69,8 +81,14 @@ function removeEventListeners() {
   canvas.value.removeEventListener('mouseup', stopDrawing);
   canvas.value.removeEventListener('mouseout', stopDrawing);
 
-  canvas.value.removeEventListener('touchstart', startDrawing);
-  canvas.value.removeEventListener('touchmove', draw);
+  canvas.value.removeEventListener('touchstart', (e) => {
+    e.preventDefault();
+    startDrawing(e);
+  });
+  canvas.value.removeEventListener('touchmove', (e) => {
+    e.preventDefault();
+    draw(e);
+  });
   canvas.value.removeEventListener('touchend', stopDrawing);
   canvas.value.removeEventListener('touchcancel', stopDrawing);
 
@@ -93,13 +111,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-
+  <div>
     <canvas ref="canvas"></canvas>
-
+  </div>
 </template>
 
 <style scoped>
-
-
-
+canvas {
+  display: block;
+  background: #fff; /* White background for the canvas */
+ 
+}
 </style>

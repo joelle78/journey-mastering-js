@@ -17,7 +17,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container">
+  <div id="challenge-one" class="container">
     <TemplatesGridBackground/>
 
     <main>
@@ -46,7 +46,7 @@ onMounted(() => {
 
     <div class="buttons">
       <AtomsButtonPrevious/>
-      <AtomsButtonNext/>
+      <a href="#challenge-two"><AtomsButtonNext/></a>
     </div>
   </div>
 </template>

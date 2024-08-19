@@ -19,7 +19,7 @@ onMounted(() => {
 <template>
 
 
-  <div class="container">
+  <div id="challenge-two" class="container">
     <TemplatesGridBackground/>
 
     <main>
@@ -47,7 +47,7 @@ onMounted(() => {
     </main>
 
     <div class="buttons">
-      <AtomsButtonPrevious/>
+      <a href="#challenge-one"><AtomsButtonPrevious/></a>
       <AtomsButtonNext/>
     </div>
 
@@ -62,7 +62,7 @@ span {
 main {
   position: absolute;
   margin-left: 2rem;
-  top: 48rem;
+  top: 115vh;
   left: 0;
   display: flex;
   justify-content: flex-start;

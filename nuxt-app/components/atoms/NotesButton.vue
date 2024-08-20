@@ -4,7 +4,9 @@
 
 <template>
   <div>
+    <a href="notes">
     <button>Notes</button>
+    </a>
   </div>
 </template>
 

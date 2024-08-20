@@ -4,7 +4,9 @@
 
 <template>
   <div>
-    <button>Challenges</button>
+    <a href="/challenges">
+    <button >Challenges</button>
+    </a>
   </div>
 </template>
 

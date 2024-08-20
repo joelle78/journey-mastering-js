@@ -7,6 +7,10 @@
     font-family: "Anton", sans-serif;
 }
 
+body {
+    overflow: clip;
+}
+
 :root {
     --yellow: #F0DC55;
     --grey: #C5C5C5;
@@ -53,15 +57,35 @@ p {
 }
 
 @media (min-width: 36rem) {
+    h1 {
+        font-size: 3.5rem;
+    }
+
     h3 {
         font-size: 2.8rem;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.5rem;
     }
 }
 
 /* MEDIA QUERY LAPTOP M*/
 @media (min-width: 64rem) {
+    h1 {
+        font-size: 4rem;
+    }
+
     h3 {
         font-size: 3rem;
+    }
+}
+
+/* MEDIA QUERY LAPTOP M*/
+@media (min-width: 90rem) {
+    h1 {
+        font-size: 4.5rem;
     }
 }
 

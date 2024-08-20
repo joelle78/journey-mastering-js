@@ -2,25 +2,27 @@
 const props = defineProps({
   homepage: {
     type: Object,
-    default: null
-  }
+    default: () => null,
+  },
 });
 </script>
 
 <template>
   <div class="container">
-    <TemplatesGridBackground/>
-
+    <TemplatesGridBackground />
     <main>
-      <div class="outline">
-        <h1>Welcome to <span>my</span> journey</h1>
-        <h2>Of mastering Javascript</h2>
+      <div class="flex-container">
+        <header>
+          <h1>Welcome to <span>my</span> journey</h1>
+          <h2>Of mastering Javascript</h2>
+        </header>
 
-        <p v-if="props.homepage">{{ props.homepage.introHomePage }}</p>
-
-        <AtomsExploreButton/>
-
-        <p class="contact">Contact</p>
+        <div class="flex-container-text">
+          <p v-if="props.homepage?.introHomePage">{{ props.homepage.introHomePage }}</p>
+          <div class="buttons">
+            <AtomsExploreButton />
+          </div>
+        </div>
       </div>
     </main>
   </div>
@@ -52,11 +54,68 @@ span {
   color: var(--yellow, #F0DC55); /* Fallback voor CSS variabelen */
 }
 
-.contact {
-  margin-top: 5rem;
-  text-transform: uppercase;
+
+@media (min-width: 36rem) {
+  main {
+    height: 90vh;
+    margin-top: 3rem;
+  }
+
+  .buttons {
+    margin-top: 2rem;
+  }
 }
 
-@media (min-width: 48rem) {
+/* MEDIA QUERY LAPTOP M*/
+@media (min-width: 64rem) {
+  .flex-container {
+    display: flex;
+    gap: 5rem;
+  }
+
+  header {
+    width: 100vw;
+    margin-left: 2rem;
+    margin-bottom: 15rem;
+  }
+
+  .flex-container-text {
+    margin-top: 5rem;
+  }
+
+  h1 {
+    width: 70%;
+  }
+
+  p {
+    width: 60%;
+  }
+}
+
+
+@media (min-width: 90rem) {
+  .flex-container {
+    gap: 3rem;
+  }
+
+  header {
+    width: 100vw;
+    margin-left: 4rem;
+    margin-bottom: 20rem;
+  }
+
+  .flex-container-text {
+    margin-top: 8rem;
+  }
+
+  h1 {
+    width: 70%;
+  }
+
+  p {
+    font-size: 1.3rem;
+    line-height: 1.6rem;
+    width: 60%;
+  }
 }
 </style>

@@ -37,7 +37,7 @@ onMounted(() => {
           <div class="popup-content">
             <a href="#" class="close-btn">&times;</a>
 
-            <!-- Gebruik v-for om door de uitdagingen te lopen -->
+            <!-- Gebruik v-for om door de uitdagingen te loopen -->
             <ul>
               <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeThree)" />
             </ul>

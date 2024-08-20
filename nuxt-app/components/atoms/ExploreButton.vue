@@ -4,7 +4,7 @@
 
 <template>
 
-  <a href="challenges">
+  <a href="/introduction">
     <button class="button-explore" role="button">Explore</button>
   </a>
 

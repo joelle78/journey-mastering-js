@@ -1,16 +1,14 @@
-<script setup lang="ts">
+<script>
 
 </script>
 
 <template>
 
     <div class="parent">
-      <div class="child">
-      </div>
-      <div class="child">
-      </div>
-      <div class="child">
-      </div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+
     </div>
 
 </template>
@@ -29,11 +27,13 @@
 .child {
   height: 95vh;
   border-right: 1px solid var(--grey); /* Binnenste lijnen van de grid in grijs */
-
 }
+
 
 /* Verwijder de rechter rand voor de laatste kolom */
 .child:nth-child(3n) {
   border-right: none;
 }
+
+
 </style>

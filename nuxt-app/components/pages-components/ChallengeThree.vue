@@ -24,13 +24,15 @@ onMounted(() => {
     <TemplatesGridBackground/>
 
     <main>
-      <div class="flex-container-header">
+      <header class="flex-container-header">
         <h3>Challenge three <span>CSS variables</span></h3>
         <a class="code-button" href="#popup3">
           <AtomsCodeButton/>
         </a>
+      </header>
 
-        <!-- De popup zelf -->
+
+      <!-- De popup zelf -->
         <div id="popup3" class="popup3">
           <div class="popup-content">
             <a href="#" class="close-btn">&times;</a>
@@ -41,9 +43,6 @@ onMounted(() => {
             </ul>
           </div>
         </div>
-
-
-      </div>
 
       <CssVariables/>
     </main>
@@ -121,7 +120,6 @@ main {
   color: #000000;
 }
 
-
 li {
   font-size: 0.5rem;
   list-style: none;
@@ -134,5 +132,43 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+
+@media (min-width: 26rem) {
+  .code-button {
+    margin-left: 6rem;
+  }
+}
+
+@media (min-width: 36rem) {
+  main {
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin-left: 0;
+  }
+
+  .flex-container-header {
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h3 {
+    margin-left: 11rem;
+    text-align: center;
+  }
+}
+
+/* MEDIA QUERY LAPTOP M*/
+@media (min-width: 64rem) {
+  span {
+    display: inline;
+  }
+
+  h3 {
+    margin-left: 9rem;
+  }
 }
 </style>

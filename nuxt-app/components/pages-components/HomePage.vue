@@ -8,7 +8,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <TemplatesGridBackground/>
 
     <main>
@@ -55,5 +55,8 @@ span {
 .contact {
   margin-top: 5rem;
   text-transform: uppercase;
+}
+
+@media (min-width: 48rem) {
 }
 </style>

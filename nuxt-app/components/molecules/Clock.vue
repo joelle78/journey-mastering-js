@@ -72,4 +72,15 @@ onUnmounted(() => {
   background: var(--yellow);
   height: 1px;
 }
+
+/* MEDIA QUERY LAPTOP M*/
+@media (min-width: 64rem) {
+  .clock {
+    width: 350px;
+    height: 350px;
+    margin-top: 2rem;
+  }
+}
+
+
 </style>

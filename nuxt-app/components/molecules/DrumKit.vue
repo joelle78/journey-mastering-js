@@ -145,4 +145,17 @@ kbd {
   letter-spacing: .1rem;
   color: #ffc600;
 }
+
+/* MEDIA QUERY LAPTOP M*/
+@media (min-width: 64rem) {
+  .keys {
+    margin-top: 2rem;
+    margin-left: 0;
+  }
+
+  .key {
+    width: 2rem;
+    font-size: 1.5rem;
+  }
+}
 </style>

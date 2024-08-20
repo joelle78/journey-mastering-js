@@ -42,5 +42,29 @@ p {
     line-height: 1.2rem;
 }
 
+/* Stijl voor de inhoud van de popup */
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    width: 80%;
+    max-width: 500px;
+}
+
+@media (min-width: 36rem) {
+    h3 {
+        font-size: 2.8rem;
+    }
+}
+
+/* MEDIA QUERY LAPTOP M*/
+@media (min-width: 64rem) {
+    h3 {
+        font-size: 3rem;
+    }
+}
+
+
 
 

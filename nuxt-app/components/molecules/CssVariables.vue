@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted } from 'vue';
+import {onMounted, onUnmounted} from 'vue';
 
 function handleUpdate(event) {
   const input = event.target;
@@ -38,7 +38,9 @@ onUnmounted(() => {
       <input id="base" type="color" name="base" value="#ffc600">
     </div>
 
-    <img src="public/images/utrecht.jpg">
+    <div class="image-container">
+      <img src="public/images/utrecht.jpg">
+    </div>
   </div>
 </template>
 
@@ -59,5 +61,36 @@ img {
 
 .hl {
   color: var(--base);
+}
+
+@media (min-width: 36rem) {
+  .controls {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img {
+    width: 25rem;
+    margin-top: 1rem;
+  }
+}
+
+/* MEDIA QUERY LAPTOP M*/
+@media (min-width: 64rem) {
+  img {
+    width: 30rem;
+  }
+}
+
+@media (min-width: 90rem) {
+  img {
+    width: 35rem;
+  }
 }
 </style>

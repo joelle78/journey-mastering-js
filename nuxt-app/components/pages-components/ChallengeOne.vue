@@ -21,11 +21,12 @@ onMounted(() => {
     <TemplatesGridBackground/>
 
     <main>
-      <div class="flex-container-header">
+      <header class="flex-container-header">
         <h3>Challenge one <span>drumkit</span></h3>
         <a class="code-button" href="#popup">
           <AtomsCodeButton/>
         </a>
+      </header>
 
         <!-- De popup zelf -->
         <div id="popup" class="popup">
@@ -38,7 +39,6 @@ onMounted(() => {
             </ul>
 
           </div>
-        </div>
       </div>
 
       <MoleculesDrumKit/>
@@ -91,16 +91,6 @@ main {
   display: flex;
 }
 
-/* Stijl voor de inhoud van de popup */
-.popup-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  position: relative;
-  width: 80%;
-  max-width: 500px;
-}
-
 /* Sluitknop van de popup */
 .close-btn {
   position: absolute;
@@ -125,4 +115,35 @@ li {
   justify-content: space-between;
   align-items: center;
 }
+
+@media (min-width: 26rem) {
+.code-button {
+  margin-left: 5rem;
+}
+}
+
+@media (min-width: 36rem) {
+  main {
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin-left: 0;
+  }
+
+  h3 {
+    margin-left: 10rem;
+  }
+
+  .code-button {
+    margin-left: 4rem;
+  }
+}
+
+/* MEDIA QUERY LAPTOP M*/
+@media (min-width: 64rem) {
+  h3 {
+    margin-left: 9rem;
+  }
+}
+
 </style>

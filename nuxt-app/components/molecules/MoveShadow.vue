@@ -63,11 +63,26 @@ onBeforeUnmount(() => {
   align-items: center;
   text-align: center;
   color: black;
+  touch-action: none;
 }
 
 h1 {
   text-shadow: 10px 10px 0 rgba(0, 0, 0, 0.3);
   font-size: 3rem;
 
+}
+
+@media (min-width: 36rem) {
+  h1 {
+   font-size: 4rem;
+  }
+}
+
+/* MEDIA QUERY LAPTOP M*/
+@media (min-width: 64rem) {
+  h1 {
+    margin-top: 2rem;
+    font-size: 5rem;
+  }
 }
 </style>

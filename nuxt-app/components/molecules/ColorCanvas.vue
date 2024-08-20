@@ -150,4 +150,18 @@ canvas {
   width: 80vw;
   height: 60vh;
 }
+
+/* MEDIA QUERY LAPTOP M*/
+@media (min-width: 64rem) {
+  canvas {
+    width: 90vw;
+    height: 65vh;
+  }
+}
+
+@media (min-width: 90rem) {
+  canvas {
+    height: 70vh;
+  }
+}
 </style>

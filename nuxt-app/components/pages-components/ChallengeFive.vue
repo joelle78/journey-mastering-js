@@ -26,11 +26,12 @@ onMounted(() => {
     <TemplatesGridBackground/>
 
     <main>
-      <div class="flex-container-header">
+      <header class="flex-container-header">
         <h3>Challenge five <span>move shadow</span></h3>
         <a class="code-button" href="#popup4">
           <AtomsCodeButton/>
         </a>
+      </header>
 
         <!-- De popup zelf -->
         <div id="popup5" class="popup5">
@@ -43,7 +44,7 @@ onMounted(() => {
             </ul>
           </div>
         </div>
-      </div>
+
       <MoveShadow/>
 
     </main>
@@ -135,4 +136,42 @@ li {
   justify-content: space-between;
   align-items: center;
 }
+
+@media (min-width: 26rem) {
+  .code-button {
+    margin-left: 6rem;
+  }
+}
+
+@media (min-width: 36rem) {
+  main {
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin-left: 0;
+  }
+
+  .flex-container-header {
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h3 {
+    margin-left: 10rem;
+    text-align: center;
+  }
+}
+
+/* MEDIA QUERY LAPTOP M*/
+@media (min-width: 64rem) {
+  span {
+    display: inline;
+  }
+
+  h3 {
+    margin-left: 9rem;
+  }
+}
+
 </style>

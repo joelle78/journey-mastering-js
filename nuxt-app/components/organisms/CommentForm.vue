@@ -1,6 +1,6 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { createNote, getNotes } from '~/composables/useNotes';
+import {ref, onMounted} from 'vue';
+import {createNote, getNotes} from '~/composables/useNotes';
 
 const subject = ref('');
 const comment = ref('');
@@ -42,41 +42,52 @@ onMounted(fetchNotes);
 </script>
 
 <template>
-<div>
+  <div>
 
-  <div v-if="loading">Loading...</div>
-  <div v-if="error">{{ error }}</div>
-  <div v-if="notes.length">
-    <h3>Notes</h3>
-    <ul>
-      <li v-for="note in notes" :key="note.id">
-        <h3>{{ note.subject }}</h3>
+    <header>
+      <h1>Notities</h1>
+      <a href="/introduction">Return</a>
+    </header>
+
+    <div v-if="loading">Loading...</div>
+    <div v-if="error">{{ error }}</div>
+    <div v-if="notes.length">
+      <div class="scroll-container">
+        <ul class="scroll-content">
+          <li v-for="note in notes" :key="note.id">
+            <h3>{{ note.subject }}</h3>
+            <div>
+              <p>{{ note.comment }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div v-if="!notes.length && !loading">No notes available</div>
+
+    <section class="form-container">
+      <form @submit.prevent="submitForm">
         <div>
-        <p>{{ note.comment }}</p>
+          <label for="subject">Subject:</label>
+          <input v-model="subject" id="subject" type="text" required/>
         </div>
-      </li>
-    </ul>
+        <div>
+          <label for="comment">Comment:</label>
+          <textarea v-model="comment" id="comment" required></textarea>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
   </div>
-  <div v-if="!notes.length && !loading">No notes available</div>
-
-  <section class="form-container">
-  <form @submit.prevent="submitForm">
-    <div>
-      <label for="subject">Subject:</label>
-      <input v-model="subject" id="subject" type="text" required />
-    </div>
-    <div>
-      <label for="comment">Comment:</label>
-      <textarea v-model="comment" id="comment" required></textarea>
-    </div>
-    <button type="submit">Submit</button>
-  </form>
-  </section>
-
-</div>
 </template>
 
 <style scoped>
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
 p {
   max-width: 80vw;
   max-height: 20vh;
@@ -84,28 +95,67 @@ p {
   margin: 0;
 }
 
+header {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: -8vh;
+  width: 80vw;
+}
+
+a {
+  margin-top: 0.8rem;
+  font-family: "Jost", sans-serif;
+  color: #000000;
+  text-decoration: none;
+}
+
 .form-container {
   display: flex;
   margin-top: 3rem;
 }
 
-ul {
-  display: flex; /* Horizontale uitlijning van berichten */
-  flex-wrap: nowrap; /* Voorkomt dat de berichten naar een nieuwe regel springen */
-  overflow-x: auto; /* Voegt een horizontale scrollbalk toe */
-  -webkit-overflow-scrolling: touch; /* Zorgt voor vloeiend scrollen op touch-apparaten */
+.scroll-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* Verberg scrollbalken */
+}
+
+.scroll-content {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto; /* Voeg horizontale scroll toe */
   padding: 0;
-  margin: 0;
+  margin: 5rem 0 0 0;
   list-style-type: none;
-  width: 100vw; /* Past zich aan de volledige breedte aan */
+  width: 100%;
   box-sizing: border-box;
+  scroll-snap-type: x mandatory;
+}
+
+.scroll-content::-webkit-scrollbar {
+  height: 8px; /* Hoogte van de horizontale scrollbalk */
+}
+
+.scroll-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); /* Achtergrondkleur van de scrollbalk track */
+}
+
+.scroll-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3); /* Kleur van de scrollbalk thumb */
+  border-radius: 10px; /* Ronde hoeken voor de scrollbalk thumb */
+}
+
+ul {
+  max-width: 80vw;
 }
 
 li {
-  flex: 0 0 auto; /* Zorgt ervoor dat elk bericht zijn eigen breedte behoudt */
+  flex: 0 0 100%;
   margin-right: 3rem; /* Ruimte tussen de berichten */
   min-width: 300px; /* Optionele minimale breedte voor elk bericht */
   box-sizing: border-box;
+  scroll-snap-align: center;
 }
 
 label {
@@ -114,10 +164,67 @@ label {
 
 input {
   width: 80vw;
+  font-family: "Jost", sans-serif;
 }
 
 textarea {
+  font-family: "Jost", sans-serif;
   width: 80vw;
   height: 20vh;
+  resize: none;
+}
+
+@media (min-width: 36rem) {
+  p {
+    max-width: 85vw;
+  }
+
+  header {
+    width: 90vw;
+  }
+
+  ul {
+    max-width: 70vw;
+  }
+
+  .form-container {
+    margin-top: 2rem;
+  }
+
+  input {
+    width: 30vw;
+  }
+
+  textarea {
+    max-width: 70vw;
+  }
+}
+
+@media (min-width: 64rem) {
+  p {
+    max-width: 93vw;
+    max-height: 20vh;
+  }
+
+  ul {
+    max-width: 70vw;
+  }
+}
+
+@media (min-width: 90rem) {
+  p {
+    max-width: 100vw;
+    min-height: 25vh;
+  }
+
+  header {
+    min-width: 94vw;
+  }
+
+  ul {
+    max-width: 70vw;
+  }
+  
+
 }
 </style>

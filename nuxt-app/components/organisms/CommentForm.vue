@@ -108,6 +108,7 @@ a {
   font-family: "Jost", sans-serif;
   color: #000000;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .form-container {
@@ -224,7 +225,7 @@ textarea {
   ul {
     max-width: 70vw;
   }
-  
+
 
 }
 </style>

@@ -11,6 +11,6 @@ button {
   font-family: "Jost", sans-serif;
   text-transform: uppercase;
   background-color: transparent;
-
+  width: 5rem;
 }
 </style>

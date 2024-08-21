@@ -5,7 +5,7 @@
 <template>
 
   <a href="/introduction">
-    <button class="button-explore" role="button">Explore</button>
+    <button class="button-block" role="button">Explore</button>
   </a>
 
 </template>

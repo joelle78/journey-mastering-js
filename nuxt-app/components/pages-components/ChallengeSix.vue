@@ -3,7 +3,6 @@ import { defineProps, onMounted } from 'vue';
 import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
 import MoveShadow from "~/components/molecules/MoveShadow.vue";
 
-
 // Ontvang de props met markdown content
 const props = defineProps({
   challenges: {
@@ -19,41 +18,37 @@ onMounted(() => {
 </script>
 
 <template>
+<div id="challenge-six" class="container">
+  <TemplatesGridBackground/>
 
+  <main>
+    <header class="flex-container-header">
+      <h3>Challenge six <span>to do list</span></h3>
+      <a class="code-button" href="#popup6">
+        <AtomsCodeButton/>
+      </a>
+    </header>
 
-  <div id="challenge-five" class="container">
-    <TemplatesGridBackground/>
+    <!-- De popup zelf -->
+    <div id="popup6" class="popup6">
+      <div class="popup-content">
+        <a href="#" class="close-btn">&times;</a>
 
-    <main>
-      <header class="flex-container-header">
-        <h3>Challenge five <span>move shadow</span></h3>
-        <a class="code-button" href="#popup5">
-          <AtomsCodeButton/>
-        </a>
-      </header>
-
-        <!-- De popup zelf -->
-        <div id="popup5" class="popup5">
-          <div class="popup-content">
-            <a href="#" class="close-btn">&times;</a>
-
-            <!-- Gebruik v-for om door de uitdagingen te loopen -->
-            <ul>
-              <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeThree)" />
-            </ul>
-          </div>
-        </div>
-
-      <MoveShadow/>
-
-    </main>
-
-    <div class="buttons">
-      <a href="#challenge-four"><AtomsButtonPrevious/></a>
-      <AtomsButtonNext/>
+        <!-- Gebruik v-for om door de uitdagingen te loopen -->
+        <ul>
+          <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeThree)" />
+        </ul>
+      </div>
     </div>
+    <MoleculesToDoList/>
+  </main>
 
+  <div class="buttons">
+    <a href="#challenge-four"><AtomsButtonPrevious/></a>
+    <AtomsButtonNext/>
   </div>
+
+</div>
 </template>
 
 <style scoped>
@@ -64,7 +59,7 @@ span {
 main {
   position: absolute;
   margin-left: 2rem;
-  top: 425vh;
+  top: 530vh;
   left: 0;
   display: flex;
   justify-content: flex-start;
@@ -83,7 +78,7 @@ main {
 
 
 /* Basisstijl voor de popup */
-.popup5 {
+.popup6 {
   display: none; /* Verberg de popup standaard */
   position: fixed;
   left: 0;
@@ -97,7 +92,7 @@ main {
 }
 
 /* Wanneer de popup het doel is, toon het */
-#popup5:target {
+#popup6:target {
   display: flex;
 }
 

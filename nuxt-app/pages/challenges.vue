@@ -10,7 +10,7 @@ const { challenges, pending, error } = await useChallenges();
     <Pages-ComponentsChallengeThree :challenges="challenges"/>
     <Pages-ComponentsChallengeFour :challenges="challenges"/>
     <Pages-ComponentsChallengeFive :challenges="challenges"/>
-
+    <Pages-ComponentsChallengeSix :challenges="challenges"/>
   </div>
 </template>
 

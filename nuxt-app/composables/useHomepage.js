@@ -7,7 +7,7 @@ export function useHomepage() {
 
     async function fetchHomepage() {
         try {
-            const response = await fetch('https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/clzl89xpl004x07uzqbncmuls/master', {
+            const response = await fetch(`${import.meta.env.VITE_APP_GQL_HOST}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

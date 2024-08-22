@@ -30,7 +30,7 @@ onMounted(() => {
         <!-- De popup zelf -->
         <div id="popup2" class="popup2">
           <div class="popup-content">
-            <a href="#" class="close-btn">&times;</a>
+            <a href="#challenge-two" class="close-btn">&times;</a>
 
             <!-- Gebruik v-for om door de uitdagingen te lopen -->
             <ul>

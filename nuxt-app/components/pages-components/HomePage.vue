@@ -67,6 +67,7 @@ main {
   .buttons {
     margin-top: 2rem;
   }
+
 }
 
 /* MEDIA QUERY LAPTOP M*/
@@ -118,7 +119,11 @@ main {
   p {
     font-size: 1.3rem;
     line-height: 1.6rem;
-    width: 60%;
+    max-width: 60%;
+  }
+
+  .buttons {
+    width: 20%;
   }
 }
 </style>

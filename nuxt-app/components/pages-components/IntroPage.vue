@@ -17,7 +17,7 @@ const props = defineProps({
         </div>
         <div class="flex-container-header">
           <div>
-            <h3>Discover</h3>
+            <h3>Discover <span>it</span> now</h3>
             <h2>JS challenges & notities</h2>
           </div>
           <div>
@@ -36,12 +36,17 @@ const props = defineProps({
 <style scoped>
 h3 {
   font-size: 3rem;
+  width: 60%;
+}
+
+span {
+  color: var(--yellow);
 }
 
 main {
   position: absolute;
   margin-left: 2rem;
-  top: 3rem;
+  top: 1rem;
   left: 0;
   display: flex;
   justify-content: flex-start;
@@ -60,7 +65,7 @@ p {
   justify-content: flex-end;
   align-items: flex-end;
   margin-right: 2rem;
-  bottom: 3vh;
+  bottom: -3vh;
 }
 
 a {
@@ -88,9 +93,9 @@ header {
 
 /* MEDIA QUERY LAPTOP M*/
 @media (min-width: 64rem) {
-
   h3 {
     font-size: 5rem;
+    width: 90%;
   }
 
   p {

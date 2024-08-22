@@ -70,13 +70,13 @@ onMounted(fetchNotes);
       <form @submit.prevent="submitForm">
         <div>
           <label for="subject">Subject:</label>
-          <input v-model="subject" id="subject" type="text" required/>
+          <input placeholder="Typ hier het onderwerp van het bericht" v-model="subject" id="subject" type="text" required/>
         </div>
         <div>
           <label for="comment">Comment:</label>
-          <textarea v-model="comment" id="comment" required></textarea>
+          <textarea placeholder="Typ hier je bericht" v-model="comment" id="comment" required></textarea>
         </div>
-        <button type="submit">Submit</button>
+        <button class="button-block" type="submit">Submit</button>
       </form>
     </section>
   </div>
@@ -113,19 +113,19 @@ a {
 
 .form-container {
   display: flex;
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 .scroll-container {
   position: relative;
   width: 100%;
-  overflow: hidden; /* Verberg scrollbalken */
+  overflow: hidden;
 }
 
 .scroll-content {
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: auto; /* Voeg horizontale scroll toe */
+  overflow-x: auto;
   padding: 0;
   margin: 5rem 0 0 0;
   list-style-type: none;
@@ -135,16 +135,16 @@ a {
 }
 
 .scroll-content::-webkit-scrollbar {
-  height: 8px; /* Hoogte van de horizontale scrollbalk */
+  height: 8px;
 }
 
 .scroll-content::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1); /* Achtergrondkleur van de scrollbalk track */
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .scroll-content::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.3); /* Kleur van de scrollbalk thumb */
-  border-radius: 10px; /* Ronde hoeken voor de scrollbalk thumb */
+  background: var(--yellow);
+  border-radius: 10px;
 }
 
 ul {
@@ -153,14 +153,15 @@ ul {
 
 li {
   flex: 0 0 100%;
-  margin-right: 3rem; /* Ruimte tussen de berichten */
-  min-width: 300px; /* Optionele minimale breedte voor elk bericht */
+  margin-right: 3rem;
+  min-width: 300px;
   box-sizing: border-box;
   scroll-snap-align: center;
 }
 
 label {
   display: block;
+  font-family: "Jost", sans-serif;
 }
 
 input {
@@ -173,6 +174,14 @@ textarea {
   width: 80vw;
   height: 20vh;
   resize: none;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--yellow);
+}
+
+button {
+  margin-top: 0.5rem;
 }
 
 @media (min-width: 36rem) {
@@ -189,12 +198,13 @@ textarea {
   }
 
   .form-container {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   input {
     width: 30vw;
   }
+
 
   textarea {
     max-width: 70vw;
@@ -225,7 +235,5 @@ textarea {
   ul {
     max-width: 70vw;
   }
-
-
 }
 </style>

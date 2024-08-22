@@ -22,7 +22,7 @@ onMounted(() => {
 
     <main>
       <header class="flex-container-header">
-        <h3>Challenge one <span>drumkit</span></h3>
+        <h3>Challenge <span class="yellow-span">one</span> drumkit</h3>
         <a class="code-button" href="#popup">
           <AtomsCodeButton/>
         </a>

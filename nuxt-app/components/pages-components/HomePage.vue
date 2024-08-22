@@ -13,7 +13,7 @@ const props = defineProps({
     <main>
       <div class="flex-container">
         <header>
-          <h1>Welcome to <span>my</span> journey</h1>
+          <h1>Welcome to <span class="yellow-span ">my</span> journey</h1>
           <h2>Of mastering Javascript</h2>
         </header>
 
@@ -30,15 +30,8 @@ const props = defineProps({
 
 <style scoped>
 /* Voeg hier je stijlen toe indien nodig */
-main {
-  position: absolute;
-  margin-left: 2rem;
-  top: 5rem;
-  left: 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  z-index: 9999;
+h1 {
+  width: 80%;
 }
 
 h2 {
@@ -50,12 +43,22 @@ p {
   max-width: 90%;
 }
 
-span {
-  color: var(--yellow, #F0DC55); /* Fallback voor CSS variabelen */
+main {
+  position: absolute;
+  margin-left: 2rem;
+  top: 5rem;
+  left: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  z-index: 9999;
 }
 
-
 @media (min-width: 36rem) {
+  h1 {
+    width: 40%;
+  }
+
   main {
     height: 90vh;
     margin-top: 3rem;

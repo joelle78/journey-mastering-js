@@ -27,7 +27,7 @@ onMounted(() => {
 
     <main>
       <header class="flex-container-header">
-        <h3>Challenge three <span>CSS variables</span></h3>
+        <h3>Challenge <span class="yellow-span">three</span> <span>CSS variables</span></h3>
         <a class="code-button" href="#popup3">
           <AtomsCodeButton/>
         </a>
@@ -58,9 +58,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-span {
-  display: block;
-}
+
 
 main {
   position: absolute;

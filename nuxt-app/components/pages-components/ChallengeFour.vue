@@ -27,7 +27,7 @@ onMounted(() => {
 
     <main>
       <div class="flex-container-header">
-        <h3>Challenge four <span>Color canvas</span></h3>
+        <h3>Challenge <span class="yellow-span">four</span> <span class="block-span">Color canvas</span></h3>
         <a class="code-button" href="#popup4">
           <AtomsCodeButton/>
         </a>
@@ -59,10 +59,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-span {
-  display: block;
-}
-
 main {
   position: absolute;
   margin-left: 2rem;

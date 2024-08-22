@@ -27,7 +27,7 @@ onMounted(() => {
 
     <main>
       <header class="flex-container-header">
-        <h3>Challenge five <span>move shadow</span></h3>
+        <h3>Challenge <span class="yellow-span">five</span> <span class="block-span">move shadow</span></h3>
         <a class="code-button" href="#popup5">
           <AtomsCodeButton/>
         </a>
@@ -51,17 +51,13 @@ onMounted(() => {
 
     <div class="buttons">
       <a href="#challenge-four"><AtomsButtonPrevious/></a>
-      <AtomsButtonNext/>
+      <a href="#challenge-six"><AtomsButtonNext/></a>
     </div>
 
   </div>
 </template>
 
 <style scoped>
-span {
-  display: block;
-}
-
 main {
   position: absolute;
   margin-left: 2rem;

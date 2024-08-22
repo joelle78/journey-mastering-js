@@ -23,7 +23,7 @@ onMounted(() => {
   <TemplatesGridBackground/>
   <main>
     <header class="flex-container-header">
-      <h3>Challenge six <span>to do list</span></h3>
+      <h3>Challenge <span class="yellow-span">six</span> <span class="block-span">to do list</span></h3>
       <a class="code-button" href="#popup6">
         <AtomsCodeButton/>
       </a>
@@ -44,7 +44,7 @@ onMounted(() => {
   </main>
 
   <div class="buttons">
-    <a href="#challenge-four"><AtomsButtonPrevious/></a>
+    <a href="#challenge-five"><AtomsButtonPrevious/></a>
     <AtomsButtonNext/>
   </div>
 
@@ -52,10 +52,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-span {
-  display: block;
-}
-
 main {
   position: absolute;
   margin-left: 2rem;

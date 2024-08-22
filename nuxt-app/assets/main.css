@@ -22,6 +22,7 @@
 h1 {
     text-transform: uppercase;
     font-size: 3rem;
+    letter-spacing: 0.1rem;
 
 }
 
@@ -35,6 +36,7 @@ h2 {
 h3 {
     font-size: 2rem;
     text-transform: uppercase;
+    letter-spacing: 0.1rem;
 }
 
 p {
@@ -42,6 +44,15 @@ p {
     font-weight: 400;
     font-size: 0.8rem;
     line-height: 1.2rem;
+}
+
+/* SPAN*/
+.yellow-span {
+    color: var(--yellow);
+}
+
+.block-span {
+    display: block;
 }
 
 /* Stijl voor de inhoud van de popup */

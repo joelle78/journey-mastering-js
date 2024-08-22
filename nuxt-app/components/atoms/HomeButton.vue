@@ -4,7 +4,7 @@
 
 <template>
 <div>
-  <a href="/">Home</a>
+  <a href="/introduction">Home</a>
 </div>
 </template>
 

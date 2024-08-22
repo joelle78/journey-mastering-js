@@ -22,6 +22,7 @@ onMounted(() => {
 
 
   <div id="challenge-four" class="container">
+    <AtomsHomeButton/>
     <TemplatesGridBackground/>
 
     <main>

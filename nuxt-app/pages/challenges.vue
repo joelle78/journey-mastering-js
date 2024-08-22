@@ -14,6 +14,6 @@ const { challenges, pending, error } = await useChallenges();
   </div>
 </template>
 
-<style>
+<style scoped>
 
 </style>

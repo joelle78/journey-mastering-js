@@ -19,8 +19,8 @@ onMounted(() => {
 
 <template>
 <div id="challenge-six" class="container">
+  <AtomsHomeButton/>
   <TemplatesGridBackground/>
-
   <main>
     <header class="flex-container-header">
       <h3>Challenge six <span>to do list</span></h3>

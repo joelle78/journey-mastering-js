@@ -3,6 +3,7 @@ import { defineProps, onMounted } from 'vue';
 import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
 import CssVariables from "~/components/molecules/CssVariables.vue";
 
+
 // Ontvang de props met markdown content
 const props = defineProps({
   challenges: {
@@ -21,6 +22,7 @@ onMounted(() => {
 
 
   <div id="challenge-three" class="container">
+    <AtomsHomeButton/>
     <TemplatesGridBackground/>
 
     <main>

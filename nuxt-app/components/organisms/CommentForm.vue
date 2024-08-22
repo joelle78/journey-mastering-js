@@ -132,8 +132,13 @@ a {
   width: 100%;
   box-sizing: border-box;
   scroll-snap-type: x mandatory;
+
+  /* Voor Firefox */
+  scrollbar-width: thin; /* maakt de scrollbar smaller */
+  scrollbar-color: var(--yellow) rgba(0, 0, 0, 0.1); /* Geel voor de thumb, lichtgrijs voor de track */
 }
 
+/* Voor WebKit-gebaseerde browsers (zoals Chrome en Safari) */
 .scroll-content::-webkit-scrollbar {
   height: 8px;
 }

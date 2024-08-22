@@ -1,5 +1,5 @@
 const API_URL = `${import.meta.env.VITE_APP_GQL_HOST}`;
-const API_TOKEN = `${import.meta.env.VITE_APP_API_TOKEN}`; // Vervang dit door je eigen API-token
+const API_TOKEN = `${import.meta.env.VITE_APP_API_TOKEN}`;
 
 async function fetchGraphQL(query, variables = {}) {
     try {
@@ -71,5 +71,5 @@ export async function getNotes() {
 
     const result = await fetchGraphQL(query);
     console.log('Fetched notes:', result);
-    return result.note; // Zorg ervoor dat je de juiste data retourneert
+    return result.note;
 }

@@ -1,10 +1,7 @@
 <script setup>
 import { defineProps, onMounted } from 'vue';
 import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
-import ColorCanvas from "~/components/molecules/ColorCanvas.vue";
 
-
-// Ontvang de props met markdown content
 const props = defineProps({
   challenges: {
     type: Array,
@@ -12,7 +9,6 @@ const props = defineProps({
   }
 });
 
-// Watch for changes and highlight code
 onMounted(() => {
   highlightCode();
 });
@@ -46,11 +42,11 @@ onMounted(() => {
 
 
       </div>
-      <ColorCanvas/>
+      <MoleculesColorCanvas/>
 
     </main>
 
-    <div class="buttons">
+    <div class="buttons-challenges">
       <a href="#challenge-three"><AtomsButtonPrevious/></a>
       <a href="#challenge-five"><AtomsButtonNext/></a>
     </div>
@@ -76,7 +72,7 @@ main {
 }
 
 .code-button {
-  margin-left: 4rem;
+  margin-left: 3rem;
 }
 
 
@@ -99,44 +95,10 @@ main {
   display: flex;
 }
 
-/* Stijl voor de inhoud van de popup */
-.popup-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  position: relative;
-  width: 80%;
-  max-width: 500px;
-}
-
-/* Sluitknop van de popup */
-.close-btn {
-  position: absolute;
-  top: -5px;
-  right: 10px;
-  font-size: 30px;
-  text-decoration: none;
-  color: #000000;
-}
-
-
-li {
-  font-size: 0.5rem;
-  list-style: none;
-}
-
-.buttons {
-  padding: 0 3rem 0 3rem;
-  position: relative;
-  top: -5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 @media (min-width: 26rem) {
   .code-button {
-    margin-left: 6rem;
+    margin-left: 7rem;
   }
 }
 

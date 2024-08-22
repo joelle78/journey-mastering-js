@@ -1,5 +1,4 @@
 <script setup>
-
 const { challenges, pending, error } = await useChallenges();
 </script>
 

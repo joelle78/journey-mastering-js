@@ -1,8 +1,7 @@
 <script setup>
-import { defineProps, onMounted } from 'vue';
-import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
+import {defineProps, onMounted} from 'vue';
+import {getMarkdownContent, highlightCode} from '/composables/useMarkdown';
 
-// Ontvang de props met markdown content
 const props = defineProps({
   challenges: {
     type: Array,
@@ -10,7 +9,6 @@ const props = defineProps({
   }
 });
 
-// Watch for changes and highlight code
 onMounted(() => {
   highlightCode();
 });
@@ -28,25 +26,30 @@ onMounted(() => {
         </a>
       </header>
 
-        <!-- De popup zelf -->
-        <div id="popup" class="popup">
-          <div class="popup-content">
-            <a href="#" class="close-btn">&times;</a>
+      <!-- De popup zelf -->
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <a href="#" class="close-btn">&times;</a>
 
-            <!-- Gebruik v-for om door de uitdagingen te lopen -->
-            <ul>
-              <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeOne)" />
-            </ul>
+          <!-- Gebruik v-for om door de uitdagingen te lopen -->
+          <ul>
+            <li v-for="challenge in challenges" :key="challenge.id"
+                v-html="getMarkdownContent(challenge.challengeOne)"/>
+          </ul>
 
-          </div>
+        </div>
       </div>
 
       <MoleculesDrumKit/>
     </main>
 
-    <div class="buttons">
-      <a href="/"><AtomsButtonPrevious/></a>
-      <a href="#challenge-two"><AtomsButtonNext/></a>
+    <div class="buttons-challenges">
+      <a href="/">
+        <AtomsButtonPrevious/>
+      </a>
+      <a href="#challenge-two">
+        <AtomsButtonNext/>
+      </a>
     </div>
   </div>
 </template>
@@ -91,35 +94,11 @@ main {
   display: flex;
 }
 
-/* Sluitknop van de popup */
-.close-btn {
-  position: absolute;
-  top: -5px;
-  right: 10px;
-  font-size: 30px;
-  text-decoration: none;
-  color: #000000;
-}
-
-
-li {
-  font-size: 0.5rem;
-  list-style: none;
-}
-
-.buttons {
-  padding: 0 3rem 0 3rem;
-  position: relative;
-  top: -5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 @media (min-width: 26rem) {
-.code-button {
-  margin-left: 5rem;
-}
+  .code-button {
+    margin-left: 5rem;
+  }
 }
 
 @media (min-width: 36rem) {

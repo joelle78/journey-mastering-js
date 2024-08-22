@@ -24,10 +24,10 @@ export function useHomepage() {
                 })
             });
             const result = await response.json();
-            console.log('API Response:', result);  // Controleer de API-response
+            console.log('API Response:', result);
             homepage.value = result.data.homepages[1];  // Selecteer de tweede item
         } catch (err) {
-            console.error('Error fetching homepage data:', err);  // Foutafhandeling
+            console.error('Error fetching homepage data:', err);
             error.value = err;
         } finally {
             pending.value = false;

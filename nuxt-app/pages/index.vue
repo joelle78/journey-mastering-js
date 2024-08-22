@@ -1,6 +1,4 @@
 <script setup>
-import { useHomepage } from '~/composables/useHomepage';
-
 const { homepage, pending, error } = useHomepage();
 </script>
 

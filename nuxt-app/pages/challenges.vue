@@ -1,15 +1,10 @@
 <script setup>
-import {useHead} from "@vueuse/head";
+
 
 const { challenges, pending, error } = await useChallenges();
 
 
-useHead({
-  title: 'Challenges',
-  meta: [
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-  ]
-});
+
 </script>
 
 <template>

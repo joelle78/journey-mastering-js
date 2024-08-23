@@ -44,7 +44,7 @@ onMounted(fetchNotes);
 <template>
   <div>
     <header>
-      <h1>Notities</h1>
+      <h1 tabindex="0">Notities</h1>
       <a href="/introduction" aria-label="Return to introduction page">Return</a>
     </header>
 

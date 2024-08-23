@@ -21,7 +21,7 @@ onMounted(() => {
 
     <main>
       <header class="flex-container-header">
-        <h3>
+        <h3 tabindex="0">
           Challenge <span class="yellow-span"> five </span>
           <span class="block-span">move shadow</span>
         </h3>

@@ -17,11 +17,11 @@ const props = defineProps({
         </div>
         <div class="flex-container-header">
           <div>
-            <h3>Discover <span>it</span> now</h3>
-            <h2>JS challenges & notes</h2>
+            <h3 tabindex="0">Discover <span>it</span> now</h3>
+            <h2 tabindex="0">JS challenges & notes</h2>
           </div>
           <div>
-            <p v-if="props.homepage?.parIntroPage">{{ props.homepage.parIntroPage }}</p>
+            <p tabindex="0" v-if="props.homepage?.parIntroPage">{{ props.homepage.parIntroPage }}</p>
             <div class="buttons">
               <button aria-label="View challenges">
                 <AtomsChallengesButton />

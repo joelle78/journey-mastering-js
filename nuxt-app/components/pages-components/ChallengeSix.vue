@@ -21,7 +21,7 @@ onMounted(() => {
 
     <main>
       <header class="flex-container-header">
-        <h3>Challenge <span class="yellow-span">six</span> <span class="block-span">to do list</span></h3>
+        <h3 tabindex="0">Challenge <span class="yellow-span">six</span> <span class="block-span">to do list</span></h3>
         <a class="code-button" href="#popup6" aria-label="View code for challenge six" role="button">
           <AtomsCodeButton/>
         </a>

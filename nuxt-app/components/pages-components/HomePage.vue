@@ -13,12 +13,12 @@ const props = defineProps({
     <main>
       <div class="flex-container">
         <header>
-          <h1>Welcome to <span class="yellow-span">my</span> journey</h1>
-          <h2>Of mastering JavaScript</h2>
+          <h1 tabindex="0">Welcome to <span class="yellow-span">my</span> journey</h1>
+          <h2 tabindex="0">Of mastering JavaScript</h2>
         </header>
 
         <div class="flex-container-text">
-          <p v-if="props.homepage?.introHomePage">{{ props.homepage.introHomePage }}</p>
+          <p  tabindex="0" v-if="props.homepage?.introHomePage">{{ props.homepage.introHomePage }}</p>
           <div class="buttons">
             <button aria-label="Explore my journey">
               <AtomsExploreButton />

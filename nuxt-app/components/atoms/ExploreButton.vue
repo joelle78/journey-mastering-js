@@ -5,7 +5,7 @@
 <template>
 
   <a href="/introduction">
-    <button class="button-block" role="button" aria-label="button-explore">Explore</button>
+    <button class="button-block" >Explore</button>
   </a>
 
 </template>

@@ -5,7 +5,7 @@
 <template>
   <div>
     <a  href="/challenges">
-    <button class="button-block" role="button" aria-label="button-go-to-challenges">Challenges</button>
+    <button class="button-block" >Challenges</button>
     </a>
   </div>
 </template>

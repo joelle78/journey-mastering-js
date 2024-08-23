@@ -27,21 +27,36 @@ function handleClick(e) {
   if (keyCode) playSound(keyCode);
 }
 
+// Dit zorgt ervoor dat je op een key kunt drukken met Enter of Spatie wanneer deze is gefocust.
+function handleKeydownOnKey(e) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    const keyCode = e.target.dataset.key;
+    if (keyCode) {
+      e.preventDefault(); // Voorkom scrollen bij spatie
+      playSound(keyCode);
+    }
+  }
+}
+
 onMounted(() => {
   const keysContainer = document.querySelector('.keys');
+  const keys = document.querySelectorAll('.key');
 
   keysContainer.addEventListener('transitionend', removeTransition);
   keysContainer.addEventListener('click', handleClick);
 
+  keys.forEach(key => key.addEventListener('keydown', handleKeydownOnKey));
   window.addEventListener('keydown', handleKeydown);
 });
 
 onUnmounted(() => {
   const keysContainer = document.querySelector('.keys');
+  const keys = document.querySelectorAll('.key');
 
   keysContainer.removeEventListener('transitionend', removeTransition);
   keysContainer.removeEventListener('click', handleClick);
 
+  keys.forEach(key => key.removeEventListener('keydown', handleKeydownOnKey));
   window.removeEventListener('keydown', handleKeydown);
 });
 </script>
@@ -49,39 +64,39 @@ onUnmounted(() => {
 <template>
   <div>
     <div class="keys">
-      <div data-key="65" class="key">
+      <div data-key="65" class="key" tabindex="0">
         <kbd>A</kbd>
         <span class="sound">clap</span>
       </div>
-      <div data-key="83" class="key">
+      <div data-key="83" class="key" tabindex="0">
         <kbd>S</kbd>
         <span class="sound">hihat</span>
       </div>
-      <div data-key="68" class="key">
+      <div data-key="68" class="key" tabindex="0">
         <kbd>D</kbd>
         <span class="sound">kick</span>
       </div>
-      <div data-key="70" class="key">
+      <div data-key="70" class="key" tabindex="0">
         <kbd>F</kbd>
         <span class="sound">openhat</span>
       </div>
-      <div data-key="71" class="key">
+      <div data-key="71" class="key" tabindex="0">
         <kbd>G</kbd>
         <span class="sound">boom</span>
       </div>
-      <div data-key="72" class="key">
+      <div data-key="72" class="key" tabindex="0">
         <kbd>H</kbd>
         <span class="sound">ride</span>
       </div>
-      <div data-key="74" class="key">
+      <div data-key="74" class="key" tabindex="0">
         <kbd>J</kbd>
         <span class="sound">snare</span>
       </div>
-      <div data-key="75" class="key">
+      <div data-key="75" class="key" tabindex="0">
         <kbd>K</kbd>
         <span class="sound">tom</span>
       </div>
-      <div data-key="76" class="key">
+      <div data-key="76" class="key" tabindex="0">
         <kbd>L</kbd>
         <span class="sound">tink</span>
       </div>
@@ -126,6 +141,12 @@ onUnmounted(() => {
 
 .key:nth-child(3n+1) {
   clear: left;
+}
+
+.key:focus {
+  outline: none; /* Verwijdert de standaard outline */
+  border: 4px solid var(--yellow); /* Voegt een rode rand toe */
+  box-shadow: 0 0 5px var(--yellow); /* Voegt een schaduw toe */
 }
 
 .playing {

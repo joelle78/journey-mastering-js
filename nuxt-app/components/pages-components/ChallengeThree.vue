@@ -59,7 +59,7 @@ onMounted(() => {
 main {
   position: absolute;
   margin-left: 2rem;
-  top: 220vh;
+  top: 225vh;
   left: 0;
   display: flex;
   justify-content: flex-start;
@@ -73,7 +73,7 @@ main {
 }
 
 .code-button {
-  margin-right: 1rem;
+  margin: 2.5rem 1rem 0 0;
 }
 
 
@@ -130,11 +130,11 @@ main {
   }
 
   h3 {
-    margin-left: 8rem;
+    margin-left: 11rem;
   }
 
   .code-button {
-    margin-left: 2rem;
+    margin-left: 5rem;
   }
 }
 </style>

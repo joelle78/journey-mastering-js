@@ -3,29 +3,46 @@
 </script>
 
 <template>
-<div>
+<div class="container-home-button">
   <a href="/introduction">Home</a>
 </div>
 </template>
 
 <style scoped>
-a {
-  position: absolute;
+
+.container-home-button {
+  position: relative;
   display: flex;
+  width: 90vw;
   justify-content: flex-end;
   align-items: flex-end;
-  width: 90vw;
+  top: 10vh;
+  z-index: 99999;
+
+}
+a {
+  display: flex;
   font-family: "Jost", sans-serif;
   text-transform: uppercase;
-  margin-top: 1rem;
   text-decoration: none;
   color: black;
-  z-index: 99999;
 }
 
 @media (min-width: 36rem) {
-  a {
-    width: 95vw;
+.container-home-button {
+  margin-left: 2rem;
+}
+}
+
+@media (min-width: 64rem) {
+  .container-home-button {
+    margin-left: 3.5rem;
+  }
+}
+
+@media (min-width: 90rem) {
+  .container-home-button {
+    margin-left: 4.5rem;
   }
 }
 </style>

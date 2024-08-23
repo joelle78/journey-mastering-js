@@ -18,6 +18,6 @@
 <style scoped>
 div {
   position: relative;
-  top: 1.2rem;
+
 }
 </style>

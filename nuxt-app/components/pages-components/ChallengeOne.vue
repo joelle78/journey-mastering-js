@@ -72,7 +72,7 @@ main {
 }
 
 .code-button {
-  margin-right: 2rem;
+  margin: 2.5rem 2rem 0 0;
 }
 
 /* Basisstijl voor de popup */

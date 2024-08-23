@@ -54,7 +54,7 @@ onMounted(fetchNotes);
     <div v-if="notes.length">
       <div class="scroll-container">
         <ul class="scroll-content">
-          <li v-for="note in notes" :key="note.id">
+          <li v-for="note in notes" :key="note.id" tabindex="0">
             <h3>{{ note.subject }}</h3>
             <div>
               <p>{{ note.comment }}</p>
@@ -162,6 +162,11 @@ li {
   min-width: 300px;
   box-sizing: border-box;
   scroll-snap-align: center;
+}
+
+li:focus {
+  outline: 2px solid var(--yellow); /* Pas de focusstijl aan naar wens */
+  outline-offset: 4px; /* Voor wat extra ruimte rond het item */
 }
 
 label {

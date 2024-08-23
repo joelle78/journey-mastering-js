@@ -43,17 +43,16 @@ onMounted(fetchNotes);
 
 <template>
   <div>
-
     <header>
       <h1>Notities</h1>
-      <a href="/introduction">Return</a>
+      <a href="/introduction" aria-label="Return to introduction page">Return</a>
     </header>
 
-    <div v-if="loading">Loading...</div>
-    <div v-if="error">{{ error }}</div>
+    <div v-if="loading" role="status" aria-live="polite">Loading...</div>
+    <div v-if="error" role="alert">{{ error }}</div>
     <div v-if="notes.length">
       <div class="scroll-container">
-        <ul class="scroll-content">
+        <ul class="scroll-content" role="list" aria-label="Notes list">
           <li v-for="note in notes" :key="note.id" tabindex="0">
             <h3>{{ note.subject }}</h3>
             <div>
@@ -64,23 +63,37 @@ onMounted(fetchNotes);
       </div>
     </div>
 
-    <div v-if="!notes.length && !loading">No notes available</div>
+    <div v-if="!notes.length && !loading" role="status" aria-live="polite">No notes available</div>
 
     <section class="form-container">
-      <form @submit.prevent="submitForm">
+      <form @submit.prevent="submitForm" aria-labelledby="form-heading">
         <div>
           <label for="subject">Subject:</label>
-          <input placeholder="Typ hier het onderwerp van het bericht" v-model="subject" id="subject" type="text" required/>
+          <input
+              placeholder="Typ hier het onderwerp van het bericht"
+              v-model="subject"
+              id="subject"
+              type="text"
+              required
+              aria-required="true"
+          />
         </div>
         <div>
           <label for="comment">Comment:</label>
-          <textarea placeholder="Typ hier je bericht" v-model="comment" id="comment" required></textarea>
+          <textarea
+              placeholder="Typ hier je bericht"
+              v-model="comment"
+              id="comment"
+              required
+              aria-required="true"
+          ></textarea>
         </div>
         <button class="button-block" type="submit">Submit</button>
       </form>
     </section>
   </div>
 </template>
+
 
 <style scoped>
 h3 {

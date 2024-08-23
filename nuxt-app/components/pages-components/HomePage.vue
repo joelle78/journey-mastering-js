@@ -13,14 +13,16 @@ const props = defineProps({
     <main>
       <div class="flex-container">
         <header>
-          <h1>Welcome to <span class="yellow-span ">my</span> journey</h1>
-          <h2>Of mastering Javascript</h2>
+          <h1>Welcome to <span class="yellow-span">my</span> journey</h1>
+          <h2>Of mastering JavaScript</h2>
         </header>
 
         <div class="flex-container-text">
           <p v-if="props.homepage?.introHomePage">{{ props.homepage.introHomePage }}</p>
           <div class="buttons">
-            <AtomsExploreButton />
+            <button aria-label="Explore my journey">
+              <AtomsExploreButton />
+            </button>
           </div>
         </div>
       </div>
@@ -28,8 +30,8 @@ const props = defineProps({
   </div>
 </template>
 
+
 <style scoped>
-/* Voeg hier je stijlen toe indien nodig */
 h1 {
   width: 80%;
 }
@@ -41,6 +43,10 @@ h2 {
 p {
   margin-top: 2rem;
   max-width: 90%;
+}
+
+button {
+  all: unset;
 }
 
 main {

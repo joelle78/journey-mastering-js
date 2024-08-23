@@ -49,7 +49,7 @@ onMounted(() => {
 
 <template>
   <div class="container">
-    <div class="todo-app">
+    <div class="todo-app" aria-label="todo-list-app">
       <div class="row">
         <input
             v-model="newTask"

@@ -9,30 +9,34 @@ const props = defineProps({
 
 <template>
   <div id="introduction">
-    <TemplatesGridBackground/>
+    <TemplatesGridBackground />
     <main>
       <header>
         <div class="home-container">
-          <a href="/">home</a>
+          <a href="/" aria-label="Go to home page">home</a>
         </div>
         <div class="flex-container-header">
           <div>
             <h3>Discover <span>it</span> now</h3>
-            <h2>JS challenges & notities</h2>
+            <h2>JS challenges & notes</h2>
           </div>
           <div>
             <p v-if="props.homepage?.parIntroPage">{{ props.homepage.parIntroPage }}</p>
             <div class="buttons">
-              <AtomsChallengesButton/>
-              <AtomsNotesButton/>
+              <button aria-label="View challenges">
+                <AtomsChallengesButton />
+              </button>
+              <button aria-label="View notes">
+                <AtomsNotesButton />
+              </button>
             </div>
           </div>
         </div>
       </header>
-
     </main>
   </div>
 </template>
+
 <style scoped>
 h3 {
   font-size: 3rem;
@@ -41,6 +45,15 @@ h3 {
 
 span {
   color: var(--yellow);
+}
+
+button {
+  all: unset;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
 }
 
 main {

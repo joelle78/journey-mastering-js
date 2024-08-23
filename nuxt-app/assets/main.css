@@ -119,7 +119,7 @@ li {
 
 /*FOCUS STATES*/
 a:focus, button:focus, input:focus, textarea:focus, li:focus{
-    outline: none; 
+    outline: none;
     border: 4px solid var(--yellow);
     box-shadow: 0 0 5px var(--yellow);
 }

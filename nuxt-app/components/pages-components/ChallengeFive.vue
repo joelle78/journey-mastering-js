@@ -15,43 +15,47 @@ onMounted(() => {
 </script>
 
 <template>
-
-
   <div id="challenge-five" class="container">
     <AtomsHomeButton/>
     <TemplatesGridBackground/>
 
     <main>
       <header class="flex-container-header">
-        <h3>Challenge <span class="yellow-span">five</span> <span class="block-span">move shadow</span></h3>
-        <a class="code-button" href="#popup5">
+        <h3>
+          Challenge <span class="yellow-span"> five </span>
+          <span class="block-span">move shadow</span>
+        </h3>
+        <a class="code-button" href="#popup5" aria-label="View code for challenge five" role="button">
           <AtomsCodeButton/>
         </a>
       </header>
 
-        <!-- De popup zelf -->
-        <div id="popup5" class="popup5">
-          <div class="popup-content">
-            <a href="#challenge-five" class="close-btn">&times;</a>
+      <!-- De popup zelf -->
+      <div id="popup5" class="popup5" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+        <div class="popup-content" tabindex="-1">
+          <a href="#challenge-five" class="close-btn" aria-label="Close code popup">&times;</a>
 
-            <!-- Gebruik v-for om door de uitdagingen te loopen -->
-            <ul>
-              <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeThree)" />
-            </ul>
-          </div>
+          <!-- Gebruik v-for om door de uitdagingen te loopen -->
+          <ul>
+            <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeThree)" />
+          </ul>
         </div>
+      </div>
 
       <MoleculesMoveShadow/>
-
     </main>
 
-    <div class="buttons-challenges">
-      <a href="#challenge-four"><AtomsButtonPrevious/></a>
-      <a href="#challenge-six"><AtomsButtonNext/></a>
-    </div>
-
+    <nav class="buttons-challenges" aria-label="Challenge navigation">
+      <a href="#challenge-four" aria-label="Go to previous challenge">
+        <AtomsButtonPrevious/>
+      </a>
+      <a href="#challenge-six" aria-label="Go to next challenge">
+        <AtomsButtonNext/>
+      </a>
+    </nav>
   </div>
 </template>
+
 
 <style scoped>
 main {

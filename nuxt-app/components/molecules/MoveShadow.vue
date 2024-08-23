@@ -50,7 +50,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="hero" class="hero">
+  <div ref="hero" class="hero" aria-label="text-mouse-move-shadow">
     <h1>🔥SHADOW!</h1>
   </div>
 </template>

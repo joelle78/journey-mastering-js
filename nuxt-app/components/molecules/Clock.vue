@@ -39,10 +39,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="clock">
-    <div ref="hourHand" class="hand hour-hand"></div>
-    <div ref="minsHand" class="hand min-hand"></div>
-    <div ref="secondHand" class="hand second-hand"></div>
+  <div class="clock" aria-label="Clock">
+    <div ref="hourHand" class="hand hour-hand" aria-hidden="true"></div>
+    <div ref="minsHand" class="hand min-hand" aria-hidden="true"></div>
+    <div ref="secondHand" class="hand second-hand" aria-hidden="true"></div>
   </div>
 </template>
 

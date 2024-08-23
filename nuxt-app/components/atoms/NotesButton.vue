@@ -5,7 +5,7 @@
 <template>
   <div>
     <a href="notes">
-    <button class="button-block">Notes</button>
+    <button class="button-block" role="button" aria-label="button-go-to-notes">Notes</button>
     </a>
   </div>
 </template>

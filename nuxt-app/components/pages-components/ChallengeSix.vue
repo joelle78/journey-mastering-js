@@ -15,44 +15,50 @@ onMounted(() => {
 </script>
 
 <template>
-<div id="challenge-six" class="container">
-  <AtomsHomeButton/>
-  <TemplatesGridBackground/>
-  <main>
-    <header class="flex-container-header">
-      <h3>Challenge <span class="yellow-span">six</span> <span class="block-span">to do list</span></h3>
-      <a class="code-button" href="#popup6">
-        <AtomsCodeButton/>
-      </a>
-    </header>
+  <div id="challenge-six" class="container">
+    <AtomsHomeButton/>
+    <TemplatesGridBackground/>
 
-    <!-- De popup zelf -->
-    <div id="popup6" class="popup6">
-      <div class="popup-content">
-        <a href="#challenge-six" class="close-btn">&times;</a>
+    <main>
+      <header class="flex-container-header">
+        <h3>Challenge <span class="yellow-span">six</span> <span class="block-span">to do list</span></h3>
+        <a class="code-button" href="#popup6" aria-label="View code for challenge six" role="button">
+          <AtomsCodeButton/>
+        </a>
+      </header>
 
-        <!-- Gebruik v-for om door de uitdagingen te loopen -->
-        <ul>
-          <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeThree)" />
-        </ul>
+      <!-- De popup zelf -->
+      <div id="popup6" class="popup6" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+        <div class="popup-content" tabindex="-1">
+          <a href="#challenge-six" class="close-btn" aria-label="Close code popup">&times;</a>
+
+          <!-- Gebruik v-for om door de uitdagingen te loopen -->
+          <ul>
+            <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeThree)" />
+          </ul>
+        </div>
       </div>
-    </div>
-    <MoleculesToDoList/>
-  </main>
 
-  <div class="buttons-challenges">
-    <a href="#challenge-five"><AtomsButtonPrevious/></a>
-    <AtomsButtonNext/>
+      <MoleculesToDoList/>
+    </main>
+
+    <nav class="buttons-challenges" aria-label="Challenge navigation">
+      <a href="#challenge-five" aria-label="Go to challenge five">
+        <AtomsButtonPrevious/>
+      </a>
+      <a href="#challenge-seven" aria-label="Go to next challenge">
+        <AtomsButtonNext/>
+      </a>
+    </nav>
   </div>
-
-</div>
 </template>
+
 
 <style scoped>
 main {
   position: absolute;
   margin-left: 2rem;
-  top: 550vh;
+  top: 548vh;
   left: 0;
   display: flex;
   justify-content: flex-start;

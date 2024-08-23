@@ -4,7 +4,7 @@
 
 <template>
   <div>
-<button>Previous</button>
+<button role="button">Previous</button>
   </div>
 </template>
 

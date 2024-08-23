@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div class="container-home-button">
+<div class="container-home-button" role="button" aria-label="button-go-to-home">
   <a href="/introduction">Home</a>
 </div>
 </template>

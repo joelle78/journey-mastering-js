@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    <button>Next</button>
+    <button role="button">Next</button>
   </div>
 </template>
 

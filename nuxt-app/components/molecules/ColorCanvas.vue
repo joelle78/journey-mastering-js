@@ -138,7 +138,7 @@ onUnmounted(() => {
 
 <template>
   <div>
-    <canvas ref="canvas"></canvas>
+    <canvas ref="canvas" aria-label="Drawing Canvas"></canvas>
   </div>
 </template>
 

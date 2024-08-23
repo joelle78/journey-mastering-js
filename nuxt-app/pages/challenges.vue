@@ -1,9 +1,12 @@
 <script setup>
-
-
 const { challenges, pending, error } = await useChallenges();
 
-
+useHead({
+  title: 'Challenges',
+  meta: [
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+  ]
+});
 
 </script>
 

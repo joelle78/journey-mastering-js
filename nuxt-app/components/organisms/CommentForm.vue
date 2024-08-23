@@ -53,10 +53,10 @@ onMounted(fetchNotes);
     <div v-if="notes.length">
       <div class="scroll-container">
         <ul class="scroll-content" role="list" aria-label="Notes list">
-          <li v-for="note in notes" :key="note.id" tabindex="0">
-            <h3>{{ note.subject }}</h3>
+          <li v-for="note in notes" :key="note.id" tabindex="1">
+            <h3 tabindex="2">{{ note.subject }}</h3>
             <div>
-              <p>{{ note.comment }}</p>
+              <p tabindex="3">{{ note.comment }}</p>
             </div>
           </li>
         </ul>

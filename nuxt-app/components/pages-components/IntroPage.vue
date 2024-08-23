@@ -23,12 +23,14 @@ const props = defineProps({
           <div>
             <p tabindex="0" v-if="props.homepage?.parIntroPage">{{ props.homepage.parIntroPage }}</p>
             <div class="buttons">
-              <button aria-label="View challenges">
-                <AtomsChallengesButton />
-              </button>
-              <button aria-label="View notes">
-                <AtomsNotesButton />
-              </button>
+              <AtomsChallengesButton />
+              <AtomsNotesButton />
+<!--              <button aria-label="View challenges">-->
+<!--                -->
+<!--              </button>-->
+<!--              <button aria-label="View notes">-->
+<!--                -->
+<!--              </button>-->
             </div>
           </div>
         </div>

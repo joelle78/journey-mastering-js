@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@hygraph/management-sdk": "^1.2.5",
+    "@vueuse/head": "^2.0.0",
     "marked": "^14.0.0",
     "nuxt-graphql-client": "^0.2.36",
     "prismjs": "^1.29.0"

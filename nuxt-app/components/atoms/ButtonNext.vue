@@ -18,9 +18,8 @@ button {
   cursor: pointer;
 
   /* Zorgt ervoor dat alle browsers dezelfde standaard hebben */
-  -webkit-appearance: none; /* Verwijdert standaard styling in WebKit-browsers (zoals Chrome) */
-  -moz-appearance: none;    /* Verwijdert standaard styling in Firefox */
-  appearance: none;         /* Verwijdert standaard styling in overige browsers */
+  -moz-appearance: none;    /* Firefox */
+  appearance: none;         /* overige browsers */
 
 
   box-shadow: none;

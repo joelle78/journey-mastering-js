@@ -39,7 +39,7 @@ onUnmounted(() => {
     </div>
 
     <div class="image-container">
-      <img src="public/images/utrecht.jpg">
+      <img alt="picture-utrecht-centre" src="public/images/utrecht.jpg">
     </div>
   </div>
 </template>

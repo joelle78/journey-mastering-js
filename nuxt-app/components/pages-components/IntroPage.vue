@@ -37,11 +37,10 @@ const props = defineProps({
 </template>
 
 <style scoped>
-/* Add a minimum height or aspect ratio to stabilize layout */
 .text-container {
   width: 100%;
   max-width: 80%;
-  min-height: 4rem; /* Adjust based on content */
+  min-height: 4rem;
 }
 
 .content-container {
@@ -51,7 +50,7 @@ const props = defineProps({
 
 h3 {
   font-size: 3rem;
-  width: 80%; /* Make sure it does not exceed container width */
+  width: 80%;
 }
 
 span {

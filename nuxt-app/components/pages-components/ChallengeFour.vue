@@ -1,4 +1,4 @@
-<script setup>
+<script defer setup>
 import { defineProps, onMounted } from 'vue';
 import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
 

@@ -1,4 +1,4 @@
-<script setup>
+<script defer setup>
 const { challenges, pending, error } = await useChallenges();
 
 useHead({

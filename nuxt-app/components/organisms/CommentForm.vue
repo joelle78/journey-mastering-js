@@ -1,4 +1,4 @@
-<script setup>
+<script defer setup>
 import { ref, onMounted, watchEffect } from 'vue';
 import { createNote, getNotes } from '~/composables/useNotes';
 

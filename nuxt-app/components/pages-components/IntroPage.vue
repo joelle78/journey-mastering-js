@@ -16,21 +16,18 @@ const props = defineProps({
           <a href="/" aria-label="Go to home page">home</a>
         </div>
         <div class="flex-container-header">
-          <div>
+          <div class="text-container">
             <h3 tabindex="0">Discover <span>it</span> now</h3>
             <h2 tabindex="0">JS challenges & notes</h2>
           </div>
-          <div>
-            <p tabindex="0" v-if="props.homepage?.parIntroPage">{{ props.homepage.parIntroPage }}</p>
+          <div class="content-container">
+            <!-- Use a placeholder or skeleton screen while data is loading -->
+            <p tabindex="0" v-if="props.homepage?.parIntroPage">
+              {{ props.homepage.parIntroPage }}
+            </p>
             <div class="buttons">
               <AtomsChallengesButton />
               <AtomsNotesButton />
-<!--              <button aria-label="View challenges">-->
-<!--                -->
-<!--              </button>-->
-<!--              <button aria-label="View notes">-->
-<!--                -->
-<!--              </button>-->
             </div>
           </div>
         </div>
@@ -40,9 +37,21 @@ const props = defineProps({
 </template>
 
 <style scoped>
+/* Add a minimum height or aspect ratio to stabilize layout */
+.text-container {
+  width: 100%;
+  max-width: 80%;
+  min-height: 4rem; /* Adjust based on content */
+}
+
+.content-container {
+  width: 100%;
+  max-width: 90%;
+}
+
 h3 {
   font-size: 3rem;
-  width: 60%;
+  width: 80%; /* Make sure it does not exceed container width */
 }
 
 span {
@@ -107,34 +116,43 @@ header {
   }
 }
 
-/* MEDIA QUERY LAPTOP M*/
+/* MEDIA QUERY LAPTOP M */
 @media (min-width: 64rem) {
   h3 {
     font-size: 5rem;
-    width: 90%;
+    width: 80%;
   }
 
   p {
-    max-width: 80%;
-    margin-top: 7rem;
-    font-size: 1.3rem;
+    max-width: 100%;
+    margin-top: 4rem;
+    font-size: 1.1rem;
     line-height: 1.6rem;
   }
 
   .flex-container-header {
     display: flex;
     flex-direction: row;
-    gap: 10rem;
+    gap: 5rem;
     margin-left: 4rem;
   }
 
   .buttons {
     width: 25%;
   }
-
-
-
 }
 
+@media (min-width: 64rem) {
+  h3 {
+    width: 50%;
+  }
 
+  p {
+    font-size: 1.3rem;
+  }
+
+  .content-container {
+    margin-top: 5rem;
+  }
+}
 </style>

@@ -54,7 +54,7 @@ h3 {
 }
 
 span {
-  color: var(--yellow);
+  color: var(--yellow, #F0DC55);
 }
 
 button {
@@ -141,7 +141,7 @@ header {
   }
 }
 
-@media (min-width: 64rem) {
+@media (min-width: 90rem) {
   h3 {
     width: 50%;
   }

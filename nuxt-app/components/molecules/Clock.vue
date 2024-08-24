@@ -55,17 +55,17 @@ onUnmounted(() => {
   position: relative;
   width: 250px;
   height: 250px;
-  border: 5px solid black;
+  border: 5px solid #000000;
   border-radius: 50%;
   margin: 50px auto;
-  background: white;
+  background: #ffffff;
 }
 
 .hand {
   position: absolute;
   width: 40%;
   height: 2px;
-  background: black;
+  background: #000000;
   top: 50%;
   left: 10%;
   transform-origin: 100%;
@@ -73,7 +73,7 @@ onUnmounted(() => {
 }
 
 .second-hand {
-  background: var(--yellow);
+  background: var(--yellow, #F0DC55);
   height: 1px;
 }
 

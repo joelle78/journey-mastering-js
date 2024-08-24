@@ -54,13 +54,13 @@ onUnmounted(() => {
 
 img {
   width: 19rem;
-  padding: var(--spacing);
-  background: var(--base);
-  filter: blur(var(--blur));
+  padding: var(--spacing, 10px);
+  background: var(--base, #ffc600);
+  filter: blur(var(--blur, 10px));
 }
 
 .hl {
-  color: var(--base);
+  color: var(--base, #ffc600);
 }
 
 @media (min-width: 36rem) {

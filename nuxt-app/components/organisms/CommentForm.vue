@@ -151,7 +151,7 @@ a {
 
   /* Voor Firefox */
   scrollbar-width: thin;
-  scrollbar-color: var(--yellow) rgba(0, 0, 0, 0.1);
+  scrollbar-color: var(--yellow, #F0DC55) rgba(0, 0, 0, 0.1);
 }
 
 /* Voor WebKit-gebaseerde browsers (zoals Chrome en Safari) */
@@ -164,7 +164,7 @@ a {
 }
 
 .scroll-content::-webkit-scrollbar-thumb {
-  background: var(--yellow);
+  background: var(--yellow, #F0DC55);
   border-radius: 10px;
 }
 
@@ -181,7 +181,7 @@ li {
 }
 
 li:focus {
-  outline: 2px solid var(--yellow); /* Pas de focusstijl aan naar wens */
+  outline: 2px solid var(--yellow, #F0DC55); /* Pas de focusstijl aan naar wens */
   outline-offset: 4px; /* Voor wat extra ruimte rond het item */
 }
 
@@ -203,7 +203,7 @@ textarea {
 }
 
 input:focus, textarea:focus {
-  border-color: var(--yellow);
+  border-color: var(--yellow, #F0DC55);
 }
 
 button {

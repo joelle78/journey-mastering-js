@@ -106,7 +106,7 @@ button {
   border: 0;
   outline: 0;
   padding: 16px 50px;
-  background: #ff5945;
+  background: var(--yellow, #F0DC55);
   color: #fff;
   font-size: 16px;
   cursor: pointer;
@@ -136,7 +136,7 @@ ul li::before {
 }
 
 ul li.checked {
-  color: #555;
+  color: var(--grey, #C5C5C5);
   text-decoration: line-through;
 }
 
@@ -151,14 +151,14 @@ ul li span {
   width: 40px;
   height: 40px;
   font-size: 22px;
-  color: #555;
+  color: var(--grey, #C5C5C5);
   line-height: 40px;
   text-align: center;
   border-radius: 50%;
 }
 
 ul li span:hover {
-  background: #edeef0;
+  background: #ffffff;
 }
 
 @media (min-width: 64rem) {

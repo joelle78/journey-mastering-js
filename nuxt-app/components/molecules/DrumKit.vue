@@ -145,13 +145,13 @@ onUnmounted(() => {
 
 .key:focus {
   outline: none; /* Verwijdert de standaard outline */
-  border: 4px solid var(--yellow); /* Voegt een rode rand toe */
-  box-shadow: 0 0 5px var(--yellow); /* Voegt een schaduw toe */
+  border: 4px solid var(--yellow, #F0DC55); /* Voegt een rode rand toe */
+  box-shadow: 0 0 5px var(--yellow, #F0DC55); /* Voegt een schaduw toe */
 }
 
 .playing {
   transform: scale(1.1);
-  border-color: #ffc600;
+  border-color: var(--yellow, #F0DC55);
   box-shadow: 0 0 1rem #ffc600;
 }
 
@@ -164,7 +164,7 @@ kbd {
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: .1rem;
-  color: #ffc600;
+  color: var(--yellow, #F0DC55);
 }
 
 /* MEDIA QUERY LAPTOP M*/

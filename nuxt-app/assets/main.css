@@ -113,7 +113,7 @@ li {
 
 }
 
-.button-explore:active {
+.button-block:active {
     box-shadow: 0px 0px 0px 0px;
     top: 5px;
     left: 5px;

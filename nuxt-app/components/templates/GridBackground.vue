@@ -27,7 +27,7 @@
 
 .child {
   height: 95vh;
-  border-right: 1px solid var(--grey);
+  border-right: 1px solid var(--grey, #C5C5C5);
 }
 
 
@@ -49,7 +49,7 @@
 
 
   .parent .child {
-    border-right: 1px solid var(--grey);
+    border-right: 1px solid var(--grey, #C5C5C5);
   }
 
 
@@ -64,7 +64,7 @@
   }
 
   .parent .child-5 {
-    border-right: 1px solid var(--grey);
+    border-right: 1px solid var(--grey, #C5C5C5);
   }
 
   .parent .child:nth-child(5n) {

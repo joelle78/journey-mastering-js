@@ -1,4 +1,4 @@
-<script setup>
+<script defer setup>
 const props = defineProps({
   homepage: {
     type: Object,

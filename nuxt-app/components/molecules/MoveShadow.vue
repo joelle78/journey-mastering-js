@@ -1,4 +1,4 @@
-<script setup>
+<script defer setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const hero = ref(null);

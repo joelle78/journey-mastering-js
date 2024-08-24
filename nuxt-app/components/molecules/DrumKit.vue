@@ -1,4 +1,4 @@
-<script setup>
+<script defer setup>
 import { onMounted, onUnmounted } from 'vue';
 
 function removeTransition(e) {

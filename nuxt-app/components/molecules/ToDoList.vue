@@ -1,4 +1,4 @@
-<script setup>
+<script defer setup>
 import { ref, onMounted } from 'vue';
 
 const newTask = ref('');

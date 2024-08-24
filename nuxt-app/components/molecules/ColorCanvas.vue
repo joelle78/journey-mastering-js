@@ -1,4 +1,4 @@
-<script setup>
+<script defer setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 
 const canvas = ref(null);

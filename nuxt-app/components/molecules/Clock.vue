@@ -5,6 +5,8 @@ const secondHand = ref(null);
 const minsHand = ref(null);
 const hourHand = ref(null);
 
+
+
 function setDate() {
   const now = new Date();
 
@@ -36,10 +38,12 @@ onMounted(() => {
 onUnmounted(() => {
   if (intervalId) clearInterval(intervalId);  // Zorg ervoor dat het interval wordt opgeruimd
 });
+
+
 </script>
 
 <template>
-  <div class="clock" aria-roledescription="clock">
+  <div class="clock" aria-roledescription="clock" >
     <div ref="hourHand" class="hand hour-hand" aria-hidden="true"></div>
     <div ref="minsHand" class="hand min-hand" aria-hidden="true"></div>
     <div ref="secondHand" class="hand second-hand" aria-hidden="true"></div>

@@ -9,6 +9,8 @@ const props = defineProps({
   }
 });
 
+
+
 onMounted(() => {
   highlightCode();
 });
@@ -38,7 +40,7 @@ onMounted(() => {
         </div>
       </div>
 
-      <MoleculesDrumKit/>
+      <MoleculesDrumKit />
     </main>
 
     <nav class="buttons-challenges" aria-label="Challenge navigation">

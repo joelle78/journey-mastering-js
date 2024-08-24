@@ -1,6 +1,6 @@
 <script setup>
-import {ref, onMounted} from 'vue';
-import {createNote, getNotes} from '~/composables/useNotes';
+import { ref, onMounted, watchEffect } from 'vue';
+import { createNote, getNotes } from '~/composables/useNotes';
 
 const subject = ref('');
 const comment = ref('');
@@ -12,11 +12,9 @@ const fetchNotes = async () => {
   loading.value = true;
   try {
     const result = await getNotes();
-    console.log('Fetched notes:', result);
-    notes.value = result || []; // Toewijzen van de opgehaalde notities
+    notes.value = result || [];
   } catch (err) {
     error.value = err.message;
-    console.error('Fetch notes error:', err);
   } finally {
     loading.value = false;
   }
@@ -29,17 +27,23 @@ const submitForm = async () => {
     await createNote(subject.value, comment.value);
     subject.value = '';
     comment.value = '';
-    await fetchNotes(); // Herlaad de notities na succesvolle creatie
+    await fetchNotes();
   } catch (err) {
     error.value = err.message;
-    console.error('Submit form error:', err);
   } finally {
     loading.value = false;
   }
 };
 
 onMounted(fetchNotes);
+
+watchEffect(() => {
+  if (notes.value.length) {
+    fetchNotes();
+  }
+});
 </script>
+
 
 <template>
   <div>
@@ -48,8 +52,7 @@ onMounted(fetchNotes);
       <a href="/introduction" aria-label="Return to introduction page">Return</a>
     </header>
 
-    <div v-if="loading" role="status" aria-live="polite">Loading...</div>
-    <div v-if="error" role="alert">{{ error }}</div>
+
     <div v-if="notes.length">
       <div class="scroll-container">
         <ul class="scroll-content" role="list" aria-label="Notes list">

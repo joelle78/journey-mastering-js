@@ -1,4 +1,4 @@
-<script setup>
+<script defer setup>
 const props = defineProps({
   homepage: {
     type: Object,
@@ -56,6 +56,7 @@ button {
 .buttons {
   display: flex;
   flex-direction: column;
+  width: 50%;
 }
 
 main {
@@ -93,7 +94,7 @@ a {
 header {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem
+  gap: 1.5rem;
 }
 
 @media (min-width: 36rem) {
@@ -126,6 +127,11 @@ header {
     gap: 10rem;
     margin-left: 4rem;
   }
+
+  .buttons {
+    width: 25%;
+  }
+
 
 
 }

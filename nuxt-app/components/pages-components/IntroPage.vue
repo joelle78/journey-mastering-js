@@ -9,7 +9,7 @@ const props = defineProps({
 
 <template>
   <div id="introduction">
-    <TemplatesGridBackground />
+    <TemplatesGridBackground/>
     <main>
       <header>
         <div class="home-container">
@@ -25,9 +25,18 @@ const props = defineProps({
             <p tabindex="0" v-if="props.homepage?.parIntroPage">
               {{ props.homepage.parIntroPage }}
             </p>
+            <noscript>
+              <p>
+                Ik ben bezig met verschillende JS challenges, waarin ik mezelf verdiep in verschillende
+                JavaScript-concepten en -technieken. Tijdens deze challenges pak ik diverse uitdagingen aan die mijn
+                vaardigheden aanscherpen en mijn kennis verdiepen. De resultaten van deze uitdagingen deel ik hier,
+                zodat je mijn voortgang kunt volgen. Daarnaast publiceer ik ook mijn notities en observaties, waarin ik
+                mijn aanpak, leerpunten en eventuele valkuilen bespreek.
+              </p>
+            </noscript>
             <div class="buttons">
-              <AtomsChallengesButton />
-              <AtomsNotesButton />
+              <AtomsChallengesButton/>
+              <AtomsNotesButton/>
             </div>
           </div>
         </div>

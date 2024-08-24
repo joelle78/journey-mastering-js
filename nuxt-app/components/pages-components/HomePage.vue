@@ -9,7 +9,7 @@ const props = defineProps({
 
 <template>
   <div class="container">
-    <TemplatesGridBackground />
+    <TemplatesGridBackground/>
     <main>
       <div class="flex-container">
         <header>
@@ -18,10 +18,18 @@ const props = defineProps({
         </header>
 
         <div class="flex-container-text">
-          <p  tabindex="0" v-if="props.homepage?.introHomePage">{{ props.homepage.introHomePage }}</p>
+          <p tabindex="0" v-if="props.homepage?.introHomePage">{{ props.homepage.introHomePage }}</p>
+          <noscript>
+            <p>
+              Als student Front-end Development leer ik JavaScript, een sleuteltool voor interactieve websites. Mijn
+              motivatie is om creatieve en gebruiksvriendelijke weboplossingen te ontwikkelen. Het beheersen van
+              JavaScript is essentieel voor mijn carrière, en ik kijk ernaar uit om mijn vaardigheden verder te
+              verbeteren en toe te passen in toekomstige projecten.
+            </p>
+          </noscript>
           <div class="buttons">
             <button aria-label="Explore my journey">
-              <AtomsExploreButton />
+              <AtomsExploreButton/>
             </button>
           </div>
         </div>

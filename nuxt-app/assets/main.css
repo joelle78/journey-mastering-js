@@ -9,10 +9,6 @@
 
 }
 
-@font-face {
-    font-display: swap;
-}
-
 :root {
     --yellow: #F0DC55;
     --grey: #C5C5C5;

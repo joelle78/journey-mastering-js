@@ -1,25 +1,25 @@
 export default defineNuxtConfig({
-  // Devtools inschakelen
   devtools: { enabled: true },
 
-  // Toevoegen van modules
   modules: ['nuxt-graphql-client'],
 
-  // Voeg CSS-bestanden toe
   css: [
-    'assets/main.css', // Bestaand CSS-bestand
-    '~/assets/prism-custom.css' // Aangepaste Prism CSS
+    'assets/main.css',
+    '~/assets/prism-custom.css'
   ],
 
-  // Applicatie-instellingen
   app: {
     head: {
       htmlAttrs: {
-        lang: 'nl', // Stelt de taal in op Nederlands
+        lang: 'nl',
       },
+      link: [
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Anton&family=Jost:ital,wght@0,100..900;1,100..900&display=swap' }
+      ]
     },
   },
 
-  // Compatibiliteitsdatum
   compatibilityDate: '2024-08-09',
 });

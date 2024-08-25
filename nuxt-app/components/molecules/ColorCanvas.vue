@@ -28,12 +28,11 @@ function draw(e) {
   hue++;
   if (hue >= 360) hue = 0;
 
-  ctx.lineWidth += direction ? 1 : -1;
   if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) direction = !direction;
 }
 
 function startDrawing(e) {
-  e.preventDefault(); // Prevent default behavior (scrolling, etc.)
+  e.preventDefault();
   if (ctx) {
     isDrawing = true;
     const rect = canvas.value.getBoundingClientRect();
@@ -44,7 +43,7 @@ function startDrawing(e) {
 }
 
 function stopDrawing(e) {
-  e.preventDefault(); // Prevent default behavior (scrolling, etc.)
+  e.preventDefault();
   isDrawing = false;
 }
 
@@ -63,7 +62,6 @@ function addEventListeners() {
 
   canvas.value.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    // Use the first touch point
     const touch = e.touches[0];
     const rect = canvas.value.getBoundingClientRect();
     const offsetX = touch.clientX - rect.left;
@@ -74,7 +72,6 @@ function addEventListeners() {
 
   canvas.value.addEventListener('touchmove', (e) => {
     e.preventDefault();
-    // Use the first touch point
     const touch = e.touches[0];
     const rect = canvas.value.getBoundingClientRect();
     const offsetX = touch.clientX - rect.left;
@@ -85,7 +82,7 @@ function addEventListeners() {
   canvas.value.addEventListener('touchend', stopDrawing);
   canvas.value.addEventListener('touchcancel', stopDrawing);
 
-  window.addEventListener('resize', handleResize); // Handle window resize
+  window.addEventListener('resize', handleResize);
 }
 
 function removeEventListeners() {
@@ -118,13 +115,13 @@ function removeEventListeners() {
   canvas.value.removeEventListener('touchend', stopDrawing);
   canvas.value.removeEventListener('touchcancel', stopDrawing);
 
-  window.removeEventListener('resize', handleResize); // Cleanup resize listener
+  window.removeEventListener('resize', handleResize);
 }
 
 onMounted(() => {
   if (canvas.value) {
     ctx = canvas.value.getContext('2d');
-    handleResize(); // Initial resize to fit the window
+    handleResize();
     addEventListeners();
   }
 });
@@ -146,7 +143,7 @@ onUnmounted(() => {
 canvas {
   display: block;
   background: #fff;
-  touch-action: none; /* Prevent default touch actions */
+  touch-action: none;
   width: 80vw;
   height: 60vh;
 }

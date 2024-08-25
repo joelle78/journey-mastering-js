@@ -17,7 +17,7 @@
   justify-content: flex-end;
   align-items: flex-end;
   top: 10vh;
-  z-index: 99999;
+  z-index: 999;
 
 }
 a {

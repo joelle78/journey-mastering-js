@@ -1,6 +1,18 @@
 <script defer setup>
 import { onMounted, onUnmounted } from 'vue';
 
+const sounds = [
+  { key: 65, sound: 'clap', src: '/sounds/clap.wav' },
+  { key: 83, sound: 'hihat', src: '/sounds/hihat.wav' },
+  { key: 68, sound: 'kick', src: '/sounds/kick.wav' },
+  { key: 70, sound: 'openhat', src: '/sounds/openhat.wav' },
+  { key: 71, sound: 'boom', src: '/sounds/boom.wav' },
+  { key: 72, sound: 'ride', src: '/sounds/ride.wav' },
+  { key: 74, sound: 'snare', src: '/sounds/snare.wav' },
+  { key: 75, sound: 'tom', src: '/sounds/tom.wav' },
+  { key: 76, sound: 'tink', src: '/sounds/tink.wav' }
+];
+
 function removeTransition(e) {
   if (e.propertyName !== 'transform') return;
   e.target.classList.remove('playing');
@@ -27,12 +39,12 @@ function handleClick(e) {
   if (keyCode) playSound(keyCode);
 }
 
-// Dit zorgt ervoor dat je op een key kunt drukken met Enter of Spatie wanneer deze is gefocust.
+// functie dat je op een key kunt drukken met Enter of Spatie wanneer deze is gefocust.
 function handleKeydownOnKey(e) {
   if (e.key === 'Enter' || e.key === ' ') {
     const keyCode = e.target.dataset.key;
     if (keyCode) {
-      e.preventDefault(); // Voorkom scrollen bij spatie
+      e.preventDefault();
       playSound(keyCode);
     }
   }
@@ -64,53 +76,24 @@ onUnmounted(() => {
 <template>
   <div>
     <div class="keys">
-      <div data-key="65" class="key" tabindex="0">
-        <kbd>A</kbd>
-        <span class="sound">clap</span>
-      </div>
-      <div data-key="83" class="key" tabindex="0">
-        <kbd>S</kbd>
-        <span class="sound">hihat</span>
-      </div>
-      <div data-key="68" class="key" tabindex="0">
-        <kbd>D</kbd>
-        <span class="sound">kick</span>
-      </div>
-      <div data-key="70" class="key" tabindex="0">
-        <kbd>F</kbd>
-        <span class="sound">openhat</span>
-      </div>
-      <div data-key="71" class="key" tabindex="0">
-        <kbd>G</kbd>
-        <span class="sound">boom</span>
-      </div>
-      <div data-key="72" class="key" tabindex="0">
-        <kbd>H</kbd>
-        <span class="sound">ride</span>
-      </div>
-      <div data-key="74" class="key" tabindex="0">
-        <kbd>J</kbd>
-        <span class="sound">snare</span>
-      </div>
-      <div data-key="75" class="key" tabindex="0">
-        <kbd>K</kbd>
-        <span class="sound">tom</span>
-      </div>
-      <div data-key="76" class="key" tabindex="0">
-        <kbd>L</kbd>
-        <span class="sound">tink</span>
+      <div
+          v-for="sound in sounds"
+          :key="sound.key"
+          :data-key="sound.key"
+          class="key"
+          tabindex="0"
+      >
+        <kbd>{{ String.fromCharCode(sound.key) }}</kbd>
+        <span class="sound">{{ sound.sound }}</span>
       </div>
     </div>
 
-    <audio data-key="65" src="/sounds/clap.wav"></audio>
-    <audio data-key="83" src="/sounds/hihat.wav"></audio>
-    <audio data-key="68" src="/sounds/kick.wav"></audio>
-    <audio data-key="70" src="/sounds/openhat.wav"></audio>
-    <audio data-key="71" src="/sounds/boom.wav"></audio>
-    <audio data-key="72" src="/sounds/ride.wav"></audio>
-    <audio data-key="74" src="/sounds/snare.wav"></audio>
-    <audio data-key="75" src="/sounds/tom.wav"></audio>
-    <audio data-key="76" src="/sounds/tink.wav"></audio>
+    <audio
+        v-for="sound in sounds"
+        :key="sound.key"
+        :data-key="sound.key"
+        :src="sound.src"
+    ></audio>
   </div>
 </template>
 
@@ -144,9 +127,9 @@ onUnmounted(() => {
 }
 
 .key:focus {
-  outline: none; /* Verwijdert de standaard outline */
-  border: 4px solid var(--yellow, #F0DC55); /* Voegt een rode rand toe */
-  box-shadow: 0 0 5px var(--yellow, #F0DC55); /* Voegt een schaduw toe */
+  outline: none;
+  border: 4px solid var(--yellow, #F0DC55);
+  box-shadow: 0 0 5px var(--yellow, #F0DC55);
 }
 
 .playing {

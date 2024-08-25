@@ -20,7 +20,7 @@ onMounted(async () => {
   if (!error.value) {
     challenges.value = fetchedChallenges.map(challenge => ({
       id: challenge.id || 2,
-      content: challenge.challengeThree
+      content: challenge.challengeSix
     }));
   } else {
     console.error('Er is een fout opgetreden bij het ophalen van de data:', error.value);

@@ -1,10 +1,9 @@
 <script defer setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const newTask = ref('');
 const tasks = ref([]);
 
-// Voeg een taak toe
 function addTask() {
   if (newTask.value.trim() === '') {
     alert('You must write something!');
@@ -16,13 +15,11 @@ function addTask() {
   saveData();
 }
 
-// Schakel de 'checked' status van een taak
 function toggleTask(index) {
   tasks.value[index].checked = !tasks.value[index].checked;
   saveData();
 }
 
-// Verwijder een taak
 function removeTask(index) {
   tasks.value.splice(index, 1);
   saveData();
@@ -33,7 +30,6 @@ function saveData() {
   localStorage.setItem('tasks', JSON.stringify(tasks.value));
 }
 
-// Laad de taken uit de localStorage
 function loadData() {
   const savedTasks = localStorage.getItem('tasks');
   if (savedTasks) {
@@ -41,11 +37,15 @@ function loadData() {
   }
 }
 
-// Laad taken bij het opstarten van de component
 onMounted(() => {
   loadData();
 });
+
+onUnmounted(() => {
+  saveData();
+});
 </script>
+
 
 <template>
   <div class="container">

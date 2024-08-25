@@ -1,6 +1,6 @@
 <script setup>
-import { defineProps, defineEmits, onMounted, watch, nextTick } from 'vue';
-import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
+import {defineProps, defineEmits, onMounted, watch, nextTick} from 'vue';
+import {getMarkdownContent, highlightCode} from '/composables/useMarkdown';
 
 const props = defineProps({
   visible: {
@@ -76,8 +76,10 @@ watch(() => props.challenges, () => {
   padding: 20px;
   border-radius: 8px;
   position: relative;
-  width: 80%;
-  max-width: 500px;
+  max-width: 90%;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 9999;
 }
 
 .close-btn {
@@ -102,19 +104,10 @@ watch(() => props.challenges, () => {
   z-index: 9999;
 }
 
-.popup-content {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  max-width: 500px;
-  width: 100%;
+@media (min-width: 36rem) {
+  .popup-content {
+    min-width: 80%;
+  }
 }
 
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  cursor: pointer;
-}
 </style>

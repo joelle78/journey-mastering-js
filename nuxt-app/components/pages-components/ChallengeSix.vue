@@ -1,16 +1,30 @@
-<script defer setup>
-import { defineProps, onMounted } from 'vue';
-import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
+<script setup>
+import {ref, onMounted} from 'vue';
+import {useChallenges} from '@/composables/useChallenges';
 
-const props = defineProps({
-  challenges: {
-    type: Array,
-    default: () => []
+// State voor de zichtbaarheid van de popup
+const showPopup = ref(false);
+
+// State voor de challenges data
+const challenges = ref([]);
+
+// Functie om de popup te toggelen
+const togglePopup = () => {
+  showPopup.value = !showPopup.value;
+};
+
+// Data ophalen van het CMS wanneer de component gemount wordt
+onMounted(async () => {
+  const {challenges: fetchedChallenges, error} = await useChallenges();
+
+  if (!error.value) {
+    challenges.value = fetchedChallenges.map(challenge => ({
+      id: challenge.id || 2,
+      content: challenge.challengeThree
+    }));
+  } else {
+    console.error('Er is een fout opgetreden bij het ophalen van de data:', error.value);
   }
-});
-
-onMounted(() => {
-  highlightCode();
 });
 </script>
 
@@ -22,22 +36,13 @@ onMounted(() => {
     <main>
       <header class="flex-container-header">
         <h3 tabindex="0">Challenge <span class="yellow-span">six</span> <span class="block-span">to do list</span></h3>
-        <a class="code-button" href="#popup6" aria-label="View code for challenge six" role="button">
+        <a href="#" @click.prevent="togglePopup" class="code-button" aria-label="View code for challenge two"
+           role="button">
           <AtomsCodeButton/>
         </a>
       </header>
 
-      <!-- De popup zelf -->
-      <div id="popup6" class="popup6" role="dialog" aria-modal="true" aria-labelledby="popup-title">
-        <div class="popup-content" tabindex="-1">
-          <a href="#challenge-six" class="close-btn" aria-label="Close code popup">&times;</a>
-
-          <!-- Gebruik v-for om door de uitdagingen te loopen -->
-          <ul>
-            <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeThree)" />
-          </ul>
-        </div>
-      </div>
+      <OrganismsChallengePopup :visible="showPopup" :challenges="challenges" @close="togglePopup"/>
 
       <MoleculesToDoList/>
     </main>
@@ -46,9 +51,7 @@ onMounted(() => {
       <a href="#challenge-five" aria-label="Go to challenge five">
         <AtomsButtonPrevious/>
       </a>
-      <a href="#challenge-seven" aria-label="Go to next challenge">
-        <AtomsButtonNext/>
-      </a>
+
     </nav>
   </div>
 </template>

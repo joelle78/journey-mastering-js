@@ -109,6 +109,7 @@ p {
   max-height: 20vh;
   overflow: auto;
   margin: 0;
+  white-space: pre-wrap;
 }
 
 header {

@@ -170,7 +170,7 @@ kbd {
 /* MEDIA QUERY LAPTOP M*/
 @media (min-width: 64rem) {
   .keys {
-    margin-top: 2rem;
+    margin-top: 3rem;
     margin-left: 0;
   }
 

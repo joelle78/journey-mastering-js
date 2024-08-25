@@ -1,23 +1,37 @@
-<script defer setup>
-import { defineProps, onMounted } from 'vue';
-import { getMarkdownContent, highlightCode } from '/composables/useMarkdown';
+<script setup>
+import {ref, onMounted} from 'vue';
+import {useChallenges} from '@/composables/useChallenges';
 
-const props = defineProps({
-  challenges: {
-    type: Array,
-    default: () => []
+// State voor de zichtbaarheid van de popup
+const showPopup = ref(false);
+
+// State voor de challenges data
+const challenges = ref([]);
+
+// Functie om de popup te toggelen
+const togglePopup = () => {
+  showPopup.value = !showPopup.value;
+};
+
+// Data ophalen van het CMS wanneer de component gemount wordt
+onMounted(async () => {
+  const {challenges: fetchedChallenges, error} = await useChallenges();
+
+  if (!error.value) {
+    challenges.value = fetchedChallenges.map(challenge => ({
+      id: challenge.id || 2,
+      content: challenge.challengeTwo
+    }));
+  } else {
+    console.error('Er is een fout opgetreden bij het ophalen van de data:', error.value);
   }
-});
-
-onMounted(() => {
-  highlightCode();
 });
 </script>
 
 <template>
   <div id="challenge-two" class="container">
-    <AtomsHomeButton/>
-    <TemplatesGridBackground/>
+    <AtomsHomeButton />
+    <TemplatesGridBackground />
 
     <main>
       <header class="flex-container-header">
@@ -25,41 +39,30 @@ onMounted(() => {
           Challenge <span class="yellow-span"> two </span>
           <span class="block-span">current time</span>
         </h3>
-        <a class="code-button" href="#popup2" aria-label="View code for challenge two" role="button">
-          <AtomsCodeButton/>
+
+        <a href="#" @click.prevent="togglePopup" class="code-button" aria-label="View code for challenge two" role="button">
+          <AtomsCodeButton />
         </a>
       </header>
 
-      <!-- De popup zelf -->
-      <div id="popup2" class="popup2" role="dialog" aria-modal="true" aria-labelledby="popup-title">
-        <div class="popup-content" tabindex="-1">
-          <a href="#challenge-two" class="close-btn" aria-label="Close code popup">&times;</a>
+      <OrganismsChallengePopup :visible="showPopup" :challenges="challenges" @close="togglePopup" />
 
-          <!-- Gebruik v-for om door de uitdagingen te loopen -->
-          <ul>
-            <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeTwo)" />
-          </ul>
-        </div>
-      </div>
-
-      <MoleculesClock/>
+      <MoleculesClock />
     </main>
 
     <nav class="buttons-challenges" aria-label="Challenge navigation">
       <a href="#challenge-one" aria-label="Go to challenge one">
-        <AtomsButtonPrevious/>
+        <AtomsButtonPrevious />
       </a>
       <a href="#challenge-three" aria-label="Go to challenge three">
-        <AtomsButtonNext/>
+        <AtomsButtonNext />
       </a>
     </nav>
   </div>
 </template>
 
-
 <style scoped>
-
-
+/* Voeg hier je styling toe */
 main {
   position: absolute;
   margin-left: 2rem;
@@ -80,27 +83,7 @@ main {
   margin: 2.5rem 0 0 3rem;
 }
 
-
-/* Basisstijl voor de popup */
-.popup2 {
-  display: none; /* Verberg de popup standaard */
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Wanneer de popup het doel is, toon het */
-#popup2:target {
-  display: flex;
-}
-
-
+/* Media queries */
 @media (min-width: 26rem) {
   .code-button {
     margin-left: 5rem;
@@ -127,7 +110,7 @@ main {
   }
 }
 
-/* MEDIA QUERY LAPTOP M*/
+/* MEDIA QUERY LAPTOP M */
 @media (min-width: 64rem) {
   span {
     display: inline;

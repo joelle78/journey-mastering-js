@@ -1,20 +1,33 @@
-<script defer setup>
-import {defineProps, onMounted} from 'vue';
-import {getMarkdownContent, highlightCode} from '/composables/useMarkdown';
+<script setup>
+import {ref, onMounted} from 'vue';
+import {useChallenges} from '@/composables/useChallenges';
 
-const props = defineProps({
-  challenges: {
-    type: Array,
-    default: () => []
+// State voor de zichtbaarheid van de popup
+const showPopup = ref(false);
+
+// State voor de challenges data
+const challenges = ref([]);
+
+// Functie om de popup te toggelen
+const togglePopup = () => {
+  showPopup.value = !showPopup.value;
+};
+
+// Data ophalen van het CMS wanneer de component gemount wordt
+onMounted(async () => {
+  const {challenges: fetchedChallenges, error} = await useChallenges();
+
+  if (!error.value) {
+    challenges.value = fetchedChallenges.map(challenge => ({
+      id: challenge.id || 2,
+      content: challenge.challengeOne
+    }));
+  } else {
+    console.error('Er is een fout opgetreden bij het ophalen van de data:', error.value);
   }
 });
-
-
-
-onMounted(() => {
-  highlightCode();
-});
 </script>
+
 
 <template>
   <div id="challenge-one" class="container">
@@ -22,23 +35,17 @@ onMounted(() => {
 
     <main>
       <header class="flex-container-header">
-        <h3 tabindex="0">Challenge <span class="yellow-span">one</span> drumkit</h3>
-        <a class="code-button" href="#popup" aria-label="View code for challenge one" role="button">
-          <AtomsCodeButton/>
+        <h3 tabindex="0">
+          Challenge <span class="yellow-span"> one </span>
+          <span class="block-span">drumkit</span>
+        </h3>
+
+        <a href="#" @click.prevent="togglePopup" class="code-button" aria-label="View code for challenge one" role="button">
+          <AtomsCodeButton />
         </a>
       </header>
 
-      <!-- De popup zelf -->
-      <div id="popup" class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
-        <div class="popup-content" tabindex="-1">
-          <a href="#" class="close-btn" aria-label="Close code popup">&times;</a>
-
-          <!-- Gebruik v-for om door de uitdagingen te lopen -->
-          <ul>
-            <li v-for="challenge in challenges" :key="challenge.id" v-html="getMarkdownContent(challenge.challengeOne)" />
-          </ul>
-        </div>
-      </div>
+      <OrganismsChallengePopup :visible="showPopup" :challenges="challenges" @close="togglePopup" />
 
       <MoleculesDrumKit />
     </main>
@@ -58,7 +65,7 @@ onMounted(() => {
 main {
   position: absolute;
   margin-left: 2rem;
-  top: 5rem;
+  top: 3rem;
   left: 0;
   display: flex;
   justify-content: flex-start;
@@ -72,28 +79,8 @@ main {
 }
 
 .code-button {
-  margin: 2.5rem 2rem 0 0;
+  margin: 2.5rem 0 0 3rem;
 }
-
-/* Basisstijl voor de popup */
-.popup {
-  display: none; /* Verberg de popup standaard */
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Wanneer de popup het doel is, toon het */
-#popup:target {
-  display: flex;
-}
-
 
 @media (min-width: 26rem) {
   .code-button {
@@ -111,6 +98,7 @@ main {
 
   h3 {
     margin-left: 10rem;
+    text-align: center;
   }
 
   .code-button {
@@ -122,6 +110,10 @@ main {
 @media (min-width: 64rem) {
   h3 {
     margin-left: 9rem;
+  }
+
+  span {
+    display: inline;
   }
 }
 

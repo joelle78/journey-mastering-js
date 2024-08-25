@@ -55,28 +55,6 @@ p {
     display: block;
 }
 
-/* POPUP CHALLENGES */
-/* Stijl voor de inhoud van de popup */
-.popup-content {
-    background-color: white;
-    outline: 2px solid var(--yellow);
-    padding: 20px;
-    border-radius: 8px;
-    position: relative;
-    width: 80%;
-    max-width: 500px;
-}
-
-/* Sluitknop van de popup */
-.close-btn {
-    position: absolute;
-    top: -5px;
-    right: 10px;
-    font-size: 30px;
-    text-decoration: none;
-    color: #000000;
-}
-
 li {
     font-size: 0.5rem;
     list-style: none;

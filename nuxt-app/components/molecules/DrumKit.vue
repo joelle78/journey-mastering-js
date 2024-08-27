@@ -2,15 +2,15 @@
 import { onMounted, onUnmounted } from 'vue';
 
 const sounds = [
-  { key: 65, sound: 'clap', src: '/sounds/clap.wav' },
-  { key: 83, sound: 'hihat', src: '/sounds/hihat.wav' },
-  { key: 68, sound: 'kick', src: '/sounds/kick.wav' },
-  { key: 70, sound: 'openhat', src: '/sounds/openhat.wav' },
-  { key: 71, sound: 'boom', src: '/sounds/boom.wav' },
-  { key: 72, sound: 'ride', src: '/sounds/ride.wav' },
-  { key: 74, sound: 'snare', src: '/sounds/snare.wav' },
-  { key: 75, sound: 'tom', src: '/sounds/tom.wav' },
-  { key: 76, sound: 'tink', src: '/sounds/tink.wav' }
+  { key: 49, sound: 'clap', src: '/sounds/clap.wav' },
+  { key: 50, sound: 'hihat', src: '/sounds/hihat.wav' },
+  { key: 51, sound: 'kick', src: '/sounds/kick.wav' },
+  { key: 52, sound: 'openhat', src: '/sounds/openhat.wav' },
+  { key: 53, sound: 'boom', src: '/sounds/boom.wav' },
+  { key: 54, sound: 'ride', src: '/sounds/ride.wav' },
+  { key: 55, sound: 'snare', src: '/sounds/snare.wav' },
+  { key: 56, sound: 'tom', src: '/sounds/tom.wav' },
+  { key: 57, sound: 'tink', src: '/sounds/tink.wav' }
 ];
 
 function removeTransition(e) {

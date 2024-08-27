@@ -10,7 +10,6 @@ const togglePopup = () => {
   showPopup.value = !showPopup.value;
 };
 
-// Data ophalen van het CMS wanneer de component gemount wordt
 onMounted(async () => {
   const {challenges: fetchedChallenges, error} = await useChallenges();
 

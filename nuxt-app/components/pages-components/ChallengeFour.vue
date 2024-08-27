@@ -2,18 +2,14 @@
 import {ref, onMounted} from 'vue';
 import {useChallenges} from '@/composables/useChallenges';
 
-// State voor de zichtbaarheid van de popup
 const showPopup = ref(false);
 
-// State voor de challenges data
 const challenges = ref([]);
 
-// Functie om de popup te toggelen
 const togglePopup = () => {
   showPopup.value = !showPopup.value;
 };
 
-// Data ophalen van het CMS wanneer de component gemount wordt
 onMounted(async () => {
   const {challenges: fetchedChallenges, error} = await useChallenges();
 

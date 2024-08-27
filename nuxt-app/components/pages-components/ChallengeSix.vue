@@ -2,18 +2,14 @@
 import {ref, onMounted} from 'vue';
 import {useChallenges} from '@/composables/useChallenges';
 
-// State voor de zichtbaarheid van de popup
 const showPopup = ref(false);
 
-// State voor de challenges data
 const challenges = ref([]);
 
-// Functie om de popup te toggelen
 const togglePopup = () => {
   showPopup.value = !showPopup.value;
 };
 
-// Data ophalen van het CMS wanneer de component gemount wordt
 onMounted(async () => {
   const {challenges: fetchedChallenges, error} = await useChallenges();
 
@@ -80,27 +76,6 @@ main {
   height: 3.3rem;
   margin: 2.5rem 0 0 4rem;
 }
-
-
-/* Basisstijl voor de popup */
-.popup6 {
-  display: none; /* Verberg de popup standaard */
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Wanneer de popup het doel is, toon het */
-#popup6:target {
-  display: flex;
-}
-
 
 @media (min-width: 26rem) {
   .code-button {

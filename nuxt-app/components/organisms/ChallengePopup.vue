@@ -58,6 +58,7 @@ watch(() => props.challenges, () => {
           aria-label="Close code popup"
       >&times;</a
       >
+
       <ul>
         <li
             v-for="challenge in challenges"

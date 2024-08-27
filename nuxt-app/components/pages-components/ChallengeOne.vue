@@ -51,13 +51,18 @@ onMounted(async () => {
     </main>
 
     <nav class="buttons-challenges" aria-label="Challenge navigation">
-      <a href="/" aria-label="Go to homepage">
-        <AtomsButtonPrevious/>
-      </a>
-      <a href="#challenge-two" aria-label="Go to challenge two">
-        <AtomsButtonNext/>
-      </a>
+      <AtomsDynamicButton
+          label="Previous"
+          href="/introduction"
+          ariaLabel="Go to introduction page"
+      />
+      <AtomsDynamicButton
+          label="Next"
+          href="#challenge-two"
+          ariaLabel="Go to challenge two"
+      />
     </nav>
+
   </div>
 </template>
 
@@ -79,6 +84,8 @@ main {
 }
 
 .code-button {
+  width: 3.1rem;
+  height: 3.3rem;
   margin: 2.5rem 0 0 3rem;
 }
 

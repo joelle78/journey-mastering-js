@@ -106,6 +106,8 @@ main {
 
 @media (min-width: 26rem) {
   .code-button {
+    width: 3.1rem;
+    height: 3.3rem;
     margin-left: 7rem;
   }
 }

@@ -80,6 +80,8 @@ main {
 }
 
 .code-button {
+  width: 3.1rem;
+  height: 3.3rem;
   margin: 2.5rem 0 0 3rem;
 }
 

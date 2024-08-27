@@ -52,12 +52,16 @@ onMounted(async () => {
     </main>
 
     <nav class="buttons-challenges" aria-label="Challenge navigation">
-      <a href="#challenge-three" aria-label="Go to previous challenge">
-        <AtomsButtonPrevious/>
-      </a>
-      <a href="#challenge-five" aria-label="Go to next challenge">
-        <AtomsButtonNext/>
-      </a>
+      <AtomsDynamicButton
+          label="Previous"
+          href="#challenge-three"
+          ariaLabel="Go to challenge three"
+      />
+      <AtomsDynamicButton
+          label="Next"
+          href="#challenge-five"
+          ariaLabel="Go to challenge five"
+      />
     </nav>
   </div>
 </template>
@@ -82,27 +86,6 @@ main {
 .code-button {
   margin: 2.5rem 0 0 3rem;
 }
-
-
-/* Basisstijl voor de popup */
-.popup4 {
-  display: none; /* Verberg de popup standaard */
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Wanneer de popup het doel is, toon het */
-#popup4:target {
-  display: flex;
-}
-
 
 @media (min-width: 26rem) {
   .code-button {

@@ -1,7 +1,6 @@
 <script setup>
 import { defineProps } from 'vue';
 
-// Definieer de props
 const props = defineProps({
   label: {
     type: String,
